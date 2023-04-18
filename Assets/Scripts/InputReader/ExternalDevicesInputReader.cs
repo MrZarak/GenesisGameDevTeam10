@@ -14,9 +14,9 @@ namespace InputReader
         public bool Jump { get; private set; }
         public bool Attack { get; private set; }
 
-        public ExternalDevicesInputReader()
+        public ExternalDevicesInputReader(IProjectUpdater updater)
         {
-            ProjectUpdater.Instance.UpdateCalled += OnUpdate;
+            updater.UpdateCalled += OnUpdate;
         }
 
         public void Dispose() => ProjectUpdater.Instance.UpdateCalled -= OnUpdate;
