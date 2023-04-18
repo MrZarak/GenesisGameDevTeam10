@@ -18,7 +18,6 @@ namespace Item.Core
         {
             _playerEntity = playerEntity;
             _prefab = Resources.Load<SceneItem>($"Prefabs/{nameof(SceneItemsSystem)}/{nameof(SceneItem)}");
-            Debug.Log($"Prefabs/{nameof(SceneItemsSystem)}/{nameof(SceneItem)}");
 
             _itemsOnScene = new Dictionary<SceneItem, ItemContainer>();
             _parentObject = new GameObject

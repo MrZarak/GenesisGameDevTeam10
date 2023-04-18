@@ -1,54 +1,118 @@
 using System;
+using TMPro;
 using UnityEngine;
-
+using UnityEngine.UI;
+using DG.Tweening;
+using Random = UnityEngine.Random;
 namespace Item
 {
-    //todo artem pls implement logic
     public class SceneItem : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer spriteRenderer;
+        [SerializeField] private TMP_Text tMP_Text;
+        [SerializeField] private Button button;
+        [SerializeField] private Canvas canvas;
+        [SerializeField] private LayerMask mask;
+        [SerializeField] private float InteractionDisntance;
+
+        [Header("SizeControl")]
+        [SerializeField] private float minSize;
+        [SerializeField] private float maxSize;
+        [SerializeField] private float minVerticalPosition;
+        [SerializeField] private float maxVerticalPosition;
+        [SerializeField] private Transform itemTransform;
+
+        [Header("DropAnimation")]
+        [SerializeField] private float dropAnimDuration;
+        [SerializeField] private float dropRotation;
+        [SerializeField] private float dropRadius;
+
+        private float sizeModificator;
+        private Sequence sequence;
+
+        private bool textEnabled = true;
+        public bool TextEnabled
+        {
+            set
+            {
+                if (textEnabled != value)
+                {
+                    return;
+                }
+
+                textEnabled = true;
+                canvas.enabled = false;
+            }
+        }
+
+        private event Action<SceneItem> ItemClicked;
+
+        private void Awake()
+        {
+            button.onClick.AddListener(() => ItemClicked?.Invoke(this));
+            float positionDifference = maxVerticalPosition - minVerticalPosition;
+            float sizeDifference = maxSize - minSize;
+            sizeModificator = sizeDifference / positionDifference;
+        }
+
+        private void OnMouseDown() => ItemClicked?.Invoke(this);
 
         public void SetItem(Sprite texture, string text, Color textColor)
         {
             spriteRenderer.sprite = texture;
-            // тут тобі надходять дані для відмальовки
+            tMP_Text.text = text;
+            tMP_Text.color = textColor;
+            canvas.enabled = false;
+        }
+
+        private void UpdateSize()
+        {
+            float verticalDelta = maxVerticalPosition - itemTransform.position.y;
+            float currentSizeModificator = minSize + sizeModificator * verticalDelta;
+            itemTransform.localScale = Vector2.one * currentSizeModificator;
         }
 
         public void ActualizeItemData(Sprite texture, string text, Color textColor)
         {
-            // тут просто порівнюй попереднє і теперішнє значення, якщо відмінні - то змінюй і перемальовуй
+            if (spriteRenderer.sprite != texture)
+            {
+                spriteRenderer.sprite = texture;
+            }
+            else if (tMP_Text.text != text)
+            {
+                tMP_Text.text = text;
+            }
+            else if (tMP_Text.color != textColor)
+            {
+                tMP_Text.color = textColor;
+            }
         }
 
         public void PlayDropAnimation(Vector2 targetPos)
         {
-            /*
-             ця функція викликається, коли айтем з'являєтсья на сцені і треба гарно його появу відобразити
-             якщо лінь - то просто став це в targetPos і все)
-            */
+            transform.position = targetPos;
+            Vector2 movePosition = transform.position + new Vector3(Random.Range(-dropRadius, dropRadius), 0, 0);
+            sequence = DOTween.Sequence();
+            sequence.Join(transform.DOMove(movePosition, dropAnimDuration));
+            sequence.Join(itemTransform.DORotate
+                (new Vector3(0, 0, Random.Range(-dropRotation, dropRotation)), dropAnimDuration));
+            sequence.OnComplete(() => canvas.enabled = textEnabled);
         }
 
         public void RegisterPickupAction(Action<SceneItem> action)
         {
-            /*
-             це тобі приходить callback, який треба викликати, коли юзер підбирає предмет, 
-             збережи його собі десь, і коли треба викликай
-            */
+            ItemClicked += action;
         }
 
         public void UnregisterPickupAction(Action<SceneItem> action)
         {
-            /*
-            як вище, тільки навпаки(якщо зберігаєш через event Action<SceneItem> action, то просто видали цей коллбек з евенту)
-            */
+            ItemClicked -= action;
         }
-
+        
         public bool CanBePickedUp()
         {
-            /*
-           тут треба перевірити, и може юзер підняти предмет
-           (дистанцію поки що тільки перевіряти), щось подібне в лекції було через Physic2D
-          */
-            return false;
+            Collider2D player = Physics2D.OverlapCircle(this.gameObject.transform.position, InteractionDisntance, mask);
+            return player != null;
         }
     }
 }
