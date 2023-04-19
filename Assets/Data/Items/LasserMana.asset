@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6a01afcf87949ea9ca74738e141faec, type: 3}
   m_Name: LasserMana
   m_EditorClassIdentifier: 
-  id: 0
-  baseName: Lesser Arcane!!
+  id: 1
+  baseName: Lesser Mana
   baseDescription: Some desct
-  baseSprite: {fileID: 21300000, guid: a7c7b4870fc8a4ce690390a9ae6cdd6c, type: 3}
+  baseSprite: {fileID: 21300000, guid: d90e197bcaf0147c9866a54a84327f25, type: 3}
   baseRarity: 2
