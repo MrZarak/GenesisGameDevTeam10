@@ -450,7 +450,7 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 128
-  InteractionDisntance: 0.5
+  interactionDistance: 2
   minSize: 1
   maxSize: 1.4
   minVerticalPosition: -4.4

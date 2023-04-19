@@ -2,7 +2,32 @@
 {
     public enum ItemId
     {
+        Elixir,
+        HealingPotion,
+        LesserElixir,
+        LesserHealingPotion,
+        AccuracyFragment,
+        ArcaneFragment,
+        CoinBag,
+        CrystalBag,
+        FullCoinBag,
+        FullCrystalBag,
+        MagicStar,
+        CollectingItem,
+        LesserAccuracy,
         LesserArcane,
+        LesserHealth,
         LesserMana,
+        LesserPower,
+        LesserPrayer,
+        LesserQuickness,
+        LesserResistance,
+        LesserSharpness,
+        LesserCastingScroll,
+        LesserHastingScroll,
+        LesserProofScroll,
+        LesserRunningScroll,
+        PinkGiftbox,
+        YellowGiftBox,
     }
 }

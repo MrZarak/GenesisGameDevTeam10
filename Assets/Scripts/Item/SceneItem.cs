@@ -3,7 +3,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.Serialization;
 using Random = UnityEngine.Random;
+
 namespace Item
 {
     public class SceneItem : MonoBehaviour
@@ -13,17 +15,19 @@ namespace Item
         [SerializeField] private Button button;
         [SerializeField] private Canvas canvas;
         [SerializeField] private LayerMask mask;
-        [SerializeField] private float InteractionDisntance;
+        [SerializeField] private float interactionDistance;
 
-        [Header("SizeControl")]
-        [SerializeField] private float minSize;
+        [Header("SizeControl")] [SerializeField]
+        private float minSize;
+
         [SerializeField] private float maxSize;
         [SerializeField] private float minVerticalPosition;
         [SerializeField] private float maxVerticalPosition;
         [SerializeField] private Transform itemTransform;
 
-        [Header("DropAnimation")]
-        [SerializeField] private float dropAnimDuration;
+        [Header("DropAnimation")] [SerializeField]
+        private float dropAnimDuration;
+
         [SerializeField] private float dropRotation;
         [SerializeField] private float dropRadius;
 
@@ -31,6 +35,7 @@ namespace Item
         private Sequence sequence;
 
         private bool textEnabled = true;
+
         public bool TextEnabled
         {
             set
@@ -108,10 +113,11 @@ namespace Item
         {
             ItemClicked -= action;
         }
-        
+
         public bool CanBePickedUp()
         {
-            Collider2D player = Physics2D.OverlapCircle(this.gameObject.transform.position, InteractionDisntance, mask);
+            var player = Physics2D.OverlapCircle(this.gameObject.transform.position, interactionDistance, mask);
+            Debug.Log(player);
             return player != null;
         }
     }
