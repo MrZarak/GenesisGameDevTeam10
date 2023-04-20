@@ -37,7 +37,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -7, y: -114}
+  m_AnchoredPosition: {x: -0, y: 248}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9106117788567063018
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -448.71307, y: -128.20369, z: -477.20328, w: -220.79605}
+  m_margin: {x: 208.97366, y: 339.97458, z: 210.69543, w: -153.4006}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -232,7 +232,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -4.007, y: -1.284}
+  m_AnchoredPosition: {x: 0, y: 0.419}
   m_SizeDelta: {x: 848, y: 477}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &9021976057976818594
@@ -321,7 +321,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8049677417422748234}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.958176, y: -1.6978222, z: 9.92703}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -406,7 +406,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9176550831270993127}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.694785, y: -0.49469912, z: -9.92703}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -428,9 +428,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -3.9644556, y: -1.6589446}
+  m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.45746422
+  m_Radius: 0.58
 --- !u!114 &4073327925462051791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -444,13 +444,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 5759237755554656359}
-  tMP_Text: {fileID: 2931306767958334678}
+  tMPText: {fileID: 2931306767958334678}
   button: {fileID: 3401170573596540162}
   canvas: {fileID: 9021976057976818594}
   mask:
     serializedVersion: 2
     m_Bits: 128
-  interactionDistance: 2
+  interactionDistance: 3
   minSize: 1
   maxSize: 1.4
   minVerticalPosition: -4.4
@@ -458,4 +458,4 @@ MonoBehaviour:
   itemTransform: {fileID: 8859505713133853056}
   dropAnimDuration: 1
   dropRotation: 540
-  dropRadius: 2
+  dropRadius: 3

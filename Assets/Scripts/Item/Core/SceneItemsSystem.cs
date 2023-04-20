@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Player;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -62,7 +63,7 @@ namespace Item.Core
         {
             sceneItem.UnregisterPickupAction(TryToPickupItems);
             _itemsOnScene.Remove(sceneItem);
-            if (!sceneItem.gameObject.IsDestroyed())
+            if (!sceneItem.IsDestroyed())
             {
                 Object.Destroy(sceneItem.gameObject);
             }
@@ -70,7 +71,7 @@ namespace Item.Core
 
         public void Dispose()
         {
-            foreach (var sceneItem in _itemsOnScene.Keys)
+            foreach (var sceneItem in _itemsOnScene.Keys.ToList())
             {
                 DetachSceneItem(sceneItem);
             }
