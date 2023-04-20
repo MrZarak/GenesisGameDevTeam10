@@ -3,15 +3,16 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-using UnityEngine.Serialization;
+using Unity.VisualScripting;
 using Random = UnityEngine.Random;
+using Sequence = DG.Tweening.Sequence;
 
 namespace Item
 {
     public class SceneItem : MonoBehaviour
     {
         [SerializeField] private SpriteRenderer spriteRenderer;
-        [SerializeField] private TMP_Text tMP_Text;
+        [SerializeField] private TMP_Text tMPText;
         [SerializeField] private Button button;
         [SerializeField] private Canvas canvas;
         [SerializeField] private LayerMask mask;
@@ -25,39 +26,21 @@ namespace Item
         [SerializeField] private float maxVerticalPosition;
         [SerializeField] private Transform itemTransform;
 
-        [Header("DropAnimation")] [SerializeField]
-        private float dropAnimDuration;
-
+        [SerializeField] private float dropAnimDuration;
         [SerializeField] private float dropRotation;
         [SerializeField] private float dropRadius;
 
-        private float sizeModificator;
-        private Sequence sequence;
-
-        private bool textEnabled = true;
-
-        public bool TextEnabled
-        {
-            set
-            {
-                if (textEnabled != value)
-                {
-                    return;
-                }
-
-                textEnabled = true;
-                canvas.enabled = false;
-            }
-        }
+        private Sequence _sequence;
+        private float _sizeModificator;
 
         private event Action<SceneItem> ItemClicked;
 
         private void Awake()
         {
             button.onClick.AddListener(() => ItemClicked?.Invoke(this));
-            float positionDifference = maxVerticalPosition - minVerticalPosition;
-            float sizeDifference = maxSize - minSize;
-            sizeModificator = sizeDifference / positionDifference;
+            var positionDifference = maxVerticalPosition - minVerticalPosition;
+            var sizeDifference = maxSize - minSize;
+            _sizeModificator = sizeDifference / positionDifference;
         }
 
         private void OnMouseDown() => ItemClicked?.Invoke(this);
@@ -65,15 +48,15 @@ namespace Item
         public void SetItem(Sprite texture, string text, Color textColor)
         {
             spriteRenderer.sprite = texture;
-            tMP_Text.text = text;
-            tMP_Text.color = textColor;
+            tMPText.text = text;
+            tMPText.color = textColor;
             canvas.enabled = false;
         }
 
         private void UpdateSize()
         {
-            float verticalDelta = maxVerticalPosition - itemTransform.position.y;
-            float currentSizeModificator = minSize + sizeModificator * verticalDelta;
+            var verticalDelta = maxVerticalPosition - itemTransform.position.y;
+            var currentSizeModificator = minSize + _sizeModificator * verticalDelta;
             itemTransform.localScale = Vector2.one * currentSizeModificator;
         }
 
@@ -83,13 +66,13 @@ namespace Item
             {
                 spriteRenderer.sprite = texture;
             }
-            else if (tMP_Text.text != text)
+            else if (tMPText.text != text)
             {
-                tMP_Text.text = text;
+                tMPText.text = text;
             }
-            else if (tMP_Text.color != textColor)
+            else if (tMPText.color != textColor)
             {
-                tMP_Text.color = textColor;
+                tMPText.color = textColor;
             }
         }
 
@@ -97,11 +80,17 @@ namespace Item
         {
             transform.position = targetPos;
             Vector2 movePosition = transform.position + new Vector3(Random.Range(-dropRadius, dropRadius), 0, 0);
-            sequence = DOTween.Sequence();
-            sequence.Join(transform.DOMove(movePosition, dropAnimDuration));
-            sequence.Join(itemTransform.DORotate
+            _sequence = DOTween.Sequence();
+            _sequence.Join(transform.DOMove(movePosition, dropAnimDuration));
+            _sequence.Join(itemTransform.DORotate
                 (new Vector3(0, 0, Random.Range(-dropRotation, dropRotation)), dropAnimDuration));
-            sequence.OnComplete(() => canvas.enabled = textEnabled);
+            _sequence.OnComplete(() =>
+            {
+                if (!gameObject.IsDestroyed())
+                {
+                    canvas.enabled = true;
+                }
+            });
         }
 
         public void RegisterPickupAction(Action<SceneItem> action)
@@ -116,8 +105,7 @@ namespace Item
 
         public bool CanBePickedUp()
         {
-            var player = Physics2D.OverlapCircle(this.gameObject.transform.position, interactionDistance, mask);
-            Debug.Log(player);
+            var player = Physics2D.OverlapCircle(transform.position, interactionDistance, mask);
             return player != null;
         }
     }
