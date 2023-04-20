@@ -75,9 +75,11 @@ namespace Core
             if (Input.GetKeyDown(KeyCode.J))
             {
                 // todo remove in future, for testing purpose
-                var itemById = itemRegistry.GetItemById(
-                    Random.value > 0.5 ? ItemId.LesserArcane : ItemId.LesserMana
-                );
+                var allIds = Enum.GetNames(typeof(ItemId));
+
+                var itemId = (ItemId)Math.Floor(Random.value * allIds.Length);
+                
+                var itemById = itemRegistry.GetItemById(itemId);
 
                 var container = new ItemContainer(itemById, 1);
                 _sceneItemsSystem.DropItem(container, playerEntity.transform.position);
