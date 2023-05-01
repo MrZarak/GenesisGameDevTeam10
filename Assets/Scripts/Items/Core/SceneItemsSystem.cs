@@ -76,5 +76,7 @@ namespace Items.Core
                 DetachSceneItem(sceneItem);
             }
         }
+
+       
     }
 }

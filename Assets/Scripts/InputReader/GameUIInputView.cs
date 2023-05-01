@@ -17,20 +17,20 @@ namespace InputReader
         public bool Attack { get; private set; }
         public bool InventoryClicked { get; private set; }
 
-        private void Awake() 
+        private void Awake()
         {
-            jumpButton.onClick.AddListener(()=> Jump = true);
-            attackButton.onClick.AddListener(()=> Attack = true);
-            inventoryButton.onClick.AddListener(()=> InventoryClicked = true);
+            jumpButton.onClick.AddListener(() => Jump = true);
+            attackButton.onClick.AddListener(() => Attack = true);
+            inventoryButton.onClick.AddListener(() => InventoryClicked = true);
         }
 
-        private void OnDestroy() 
+        private void OnDestroy()
         {
             jumpButton.onClick.RemoveAllListeners();
             attackButton.onClick.RemoveAllListeners();
         }
 
-        public void ResetOneTimeActions() 
+        public void ResetOneTimeActions()
         {
             Jump = false;
             Attack = false;
@@ -38,4 +38,3 @@ namespace InputReader
         }
     }
 }
-

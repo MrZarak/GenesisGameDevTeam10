@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Core;
 using Core.Services.Updater;
 using InputReader;
+using Items.Core;
 using UI;
 using UI.Enum;
 
@@ -13,12 +15,14 @@ namespace Player
         private readonly PlayerEntity _playerEntity;
         private readonly List<IEntityInputSource> _inputSources;
         private readonly UIContext _uiContext;
+        private readonly GameLevelInitializer _gameLevelInitializer;
 
-        public PlayerBrain(UIContext uiContext, PlayerEntity playerEntity, List<IEntityInputSource> inputSources)
+        public PlayerBrain(UIContext uiContext, PlayerEntity playerEntity, List<IEntityInputSource> inputSources, GameLevelInitializer gameLevelInitializer)
         {
             _playerEntity = playerEntity;
             _uiContext = uiContext;
             _inputSources = inputSources;
+            _gameLevelInitializer = gameLevelInitializer;
             ProjectUpdater.Instance.FixedUpdateCalled += OnFixedUpdate;
         }
 
@@ -33,7 +37,10 @@ namespace Player
                 _playerEntity.Jump();
 
             if (IsAttack)
+            {
                 _playerEntity.StartAttack();
+                _gameLevelInitializer.DropItemRandom();
+            }
 
             if (IsInventoryClicked)
             {
