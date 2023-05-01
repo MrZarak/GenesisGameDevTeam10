@@ -17,3 +17,4 @@ MonoBehaviour:
   baseDescription: 
   baseSprite: {fileID: 21300000, guid: 519e19bb328a54142be961911cc48b50, type: 3}
   baseRarity: 4
+  <BaseMaxStack>k__BackingField: 55

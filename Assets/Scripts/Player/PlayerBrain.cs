@@ -1,9 +1,12 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
-using InputReader;
+using Core;
 using Core.Services.Updater;
+using InputReader;
+using Items.Core;
+using UI;
+using UI.Enum;
 
 namespace Player
 {
@@ -11,36 +14,57 @@ namespace Player
     {
         private readonly PlayerEntity _playerEntity;
         private readonly List<IEntityInputSource> _inputSources;
+        private readonly UIContext _uiContext;
+        private readonly GameLevelInitializer _gameLevelInitializer;
 
-        public PlayerBrain(PlayerEntity playerEntity, List<IEntityInputSource> inputSources)
+        public PlayerBrain(UIContext uiContext, PlayerEntity playerEntity, List<IEntityInputSource> inputSources, GameLevelInitializer gameLevelInitializer)
         {
             _playerEntity = playerEntity;
+            _uiContext = uiContext;
             _inputSources = inputSources;
+            _gameLevelInitializer = gameLevelInitializer;
             ProjectUpdater.Instance.FixedUpdateCalled += OnFixedUpdate;
         }
+
         public void Dispose() => ProjectUpdater.Instance.FixedUpdateCalled -= OnFixedUpdate;
+
         private void OnFixedUpdate()
         {
             _playerEntity.MoveHorizontally(GetHorizontalDirection());
             _playerEntity.MoveVertically(GetVerticalDirection());
 
-            if(IsJump)
+            if (IsJump)
                 _playerEntity.Jump();
 
-            if(IsAttack)
-                _playerEntity.StartAttack();  
+            if (IsAttack)
+            {
+                _playerEntity.StartAttack();
+                _gameLevelInitializer.DropItemRandom();
+            }
+
+            if (IsInventoryClicked)
+            {
+                if (_uiContext.CurrentController?.GetScreenType() == ScreenType.Inventory)
+                {
+                    _uiContext.CloseScreen();
+                }
+                else
+                {
+                    _uiContext.OpenScreen(ScreenType.Inventory);
+                }
+            }
 
             foreach (var inputSources in _inputSources)
-                inputSources.ResetOneTimeActions();  
+                inputSources.ResetOneTimeActions();
         }
 
         private float GetHorizontalDirection()
         {
-            foreach(var inputSources in _inputSources)
+            foreach (var inputSources in _inputSources)
             {
-                if(inputSources.HorizontalDirection == 0)
+                if (inputSources.HorizontalDirection == 0)
                     continue;
-                
+
                 return inputSources.HorizontalDirection;
             }
 
@@ -49,11 +73,11 @@ namespace Player
 
         private float GetVerticalDirection()
         {
-            foreach(var inputSources in _inputSources)
+            foreach (var inputSources in _inputSources)
             {
-                if(inputSources.VerticalDirection == 0)
+                if (inputSources.VerticalDirection == 0)
                     continue;
-                
+
                 return inputSources.VerticalDirection;
             }
 
@@ -62,6 +86,6 @@ namespace Player
 
         private bool IsJump => _inputSources.Any(source => source.Jump);
         private bool IsAttack => _inputSources.Any(source => source.Attack);
+        private bool IsInventoryClicked => _inputSources.Any(source => source.InventoryClicked);
     }
 }
-

@@ -1,41 +1,40 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Player;
 
 namespace InputReader
 {
     public class GameUIInputView : MonoBehaviour, IEntityInputSource
     {
-        [SerializeField] private Joystick _joystick;
-        [SerializeField] private Button _jumpButton;
-        [SerializeField] private Button _attackButton;
-        [SerializeField] private Button _inventoryButton;
+        [SerializeField] private Joystick joystick;
+        [SerializeField] private Button jumpButton;
+        [SerializeField] private Button attackButton;
+        [SerializeField] private Button inventoryButton;
 
-        public float HorizontalDirection => _joystick.Horizontal;
-        public float VerticalDirection => _joystick.Vertical;
+        public float HorizontalDirection => joystick.Horizontal;
+        public float VerticalDirection => joystick.Vertical;
 
         public bool Jump { get; private set; }
         public bool Attack { get; private set; }
+        public bool InventoryClicked { get; private set; }
 
-        private void Awake() 
+        private void Awake()
         {
-            _jumpButton.onClick.AddListener(()=> Jump = true);
-            _attackButton.onClick.AddListener(()=> Attack = true);
+            jumpButton.onClick.AddListener(() => Jump = true);
+            attackButton.onClick.AddListener(() => Attack = true);
+            inventoryButton.onClick.AddListener(() => InventoryClicked = true);
         }
 
-        private void OnDestroy() 
+        private void OnDestroy()
         {
-            _jumpButton.onClick.RemoveAllListeners();
-            _attackButton.onClick.RemoveAllListeners();
+            jumpButton.onClick.RemoveAllListeners();
+            attackButton.onClick.RemoveAllListeners();
         }
 
-        public void ResetOneTimeActions() 
+        public void ResetOneTimeActions()
         {
             Jump = false;
             Attack = false;
+            InventoryClicked = false;
         }
     }
 }
-
