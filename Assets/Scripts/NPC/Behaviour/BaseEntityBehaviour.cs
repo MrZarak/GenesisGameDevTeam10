@@ -11,20 +11,6 @@ namespace NPC.Behaviour
 
         protected Rigidbody2D Rigidbody;
         protected DirectionalMover DirectionalMover;
-
-        //Initialize()
-        
-        //VerticalPosition(...)
-
-        //SetDrawingOrder(...)
-
-        //SetSize(...)
-
-        //MoveHorizontally(...)
-
-        //MoveVertically(...)
-
-        //SetVerticalPosition(...)
     }
 
 }
