@@ -10,8 +10,6 @@ namespace Core.Movement.Controller
         private readonly Rigidbody2D _rigidbody;
         private readonly Transform _transform;
         private readonly DirectionalMovementData _directionalMovementData;
-        private readonly float _sizeModificator;
-
         private Vector2 _movement;
 
         public Direction Direction { get; private set; }
@@ -24,11 +22,6 @@ namespace Core.Movement.Controller
             _transform = rigidbody.transform;
             _directionalMovementData = directionalMovementData;
 
-            float positionDifference = _directionalMovementData.MaxVerticalPosition - _directionalMovementData.MinVerticalPosition;
-            float sizeDifference = _directionalMovementData.MaxSize - _directionalMovementData.MinSize;
-            _sizeModificator = sizeDifference / positionDifference;
-
-            UpdateSize();
         }
         public void MoveHorizontally(float direction)
         {
@@ -45,20 +38,8 @@ namespace Core.Movement.Controller
             Vector2 velocity = _rigidbody.velocity;
             velocity.y = direction * _directionalMovementData.VerticalSpeed;
             _rigidbody.velocity = velocity;
-
-            if(direction == 0)
-                return;
-
-            float verticalPosition = Mathf.Clamp(_rigidbody.position.y, _directionalMovementData.MinVerticalPosition, _directionalMovementData.MaxVerticalPosition);
-            _rigidbody.position = new Vector2(_rigidbody.position.x, verticalPosition);
-            UpdateSize();
         }
-        private void UpdateSize()
-        {
-            float verticalDelta = _directionalMovementData.MaxVerticalPosition - _transform.position.y;
-            float currentSizeModificator = _directionalMovementData.MinSize + _sizeModificator * verticalDelta;
-            _transform.localScale = Vector2.one * currentSizeModificator;
-        }
+        
         private void SetDirection(float direction)
         {
             if((Direction == Direction.Right && direction < 0) ||

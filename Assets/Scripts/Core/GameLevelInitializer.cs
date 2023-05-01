@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using Core.Services.Updater;
 using InputReader;
-using Items.Core;
+using Item.Core;
 using Player;
 using UI;
 using UnityEngine;
+using Drawing;
+using Core.Enums;
 using Random = UnityEngine.Random;
 
 namespace Core
@@ -23,6 +25,7 @@ namespace Core
         private UIContext _uiContext;
 
         private List<IDisposable> _disposables;
+        private LevelDrawer _levelDrawer;
 
         private bool _onPause;
 
@@ -40,6 +43,9 @@ namespace Core
 
             _disposables.Add(_sceneItemsSystem);
             _disposables.Add(_externalDevicesInput);
+
+            _levelDrawer = new LevelDrawer(LevelId.Level1);
+            _levelDrawer.RegisterElement(playerEntity);
         }
 
         private void InitProjectUpdater()
