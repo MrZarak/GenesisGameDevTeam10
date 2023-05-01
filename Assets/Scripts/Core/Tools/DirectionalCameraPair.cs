@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 using Cinemachine;
 using Core.Enums;
+using UnityEngine;
 
 namespace Core.Tools
 {

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+
 namespace Core.Services.Updater
 {
     public class ProjectUpdater: MonoBehaviour, IProjectUpdater

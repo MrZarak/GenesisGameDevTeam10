@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Core.Enums;
 using Core.Movement.Data;
+using UnityEngine;
+
 namespace Core.Movement.Controller
 {
     

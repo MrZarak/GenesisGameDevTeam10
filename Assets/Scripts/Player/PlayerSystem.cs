@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using System.Linq;
 using InputReader;
+using UI;
 
 namespace Player
 {
@@ -10,10 +8,10 @@ namespace Player
     {
         private readonly PlayerEntity _playerEntity;
         private readonly PlayerBrain _playerBrain;
-        public PlayerSystem(PlayerEntity playerEntity, List<IEntityInputSource> inputSources)
+        public PlayerSystem(UIContext uiContext, PlayerEntity playerEntity, List<IEntityInputSource> inputSources)
         {
             _playerEntity = playerEntity;
-            _playerBrain = new PlayerBrain(_playerEntity, inputSources);
+            _playerBrain = new PlayerBrain(uiContext, _playerEntity, inputSources);
         }
     }
 }
