@@ -15,7 +15,7 @@ namespace Player
 {
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class PlayerEntity : MonoBehaviour
+public class PlayerEntity : MonoBehaviour, ILevelGraphicElement
 {
     public static PlayerEntity CurrentPlayer { private set; get; }
     [SerializeField] private AnimatorController _animator;

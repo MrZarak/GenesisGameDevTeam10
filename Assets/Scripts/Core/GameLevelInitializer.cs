@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Core.Services.Updater;
 using InputReader;
-using Item.Core;
+using Items.Core;
 using Player;
 using UI;
 using UnityEngine;
