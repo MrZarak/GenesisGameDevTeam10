@@ -1,110 +1,98 @@
 using System;
-using System.Collections.Generic;
-using UnityEngine;
-using Core.Tools;
-using Core.Enums;
 using Core.Animation;
-using Core.Movement.Data;
 using Core.Movement.Controller;
+using Core.Movement.Data;
+using Core.Tools;
+using Drawing;
 using Items;
 using Items.InventoryImpl;
-using Drawing;
-using UnityEngine.Rendering;
+using NPC.Behaviour;
+using UnityEngine;
 
 namespace Player
 {
-
-[RequireComponent(typeof(Rigidbody2D))]
-public class PlayerEntity : MonoBehaviour, ILevelGraphicElement
-{
-    public static PlayerEntity CurrentPlayer { private set; get; }
-    [SerializeField] private AnimatorController _animator;
-    [SerializeField] private SortingGroup _sortingGroup;
-
-    [SerializeField] private DirectionalMovementData _directionMovementData;
-    [SerializeField] private JumpData _jumpData;
-    [SerializeField] private DirectionalCameraPair _cameras;
-
-    private Rigidbody2D _rigidbody;
-    private DirectionalMover _directionalMover;
-    private Jumper _jumper;
-    public float VerticalPosition => _rigidbody.position.y;
-    public event Action<ILevelGraphicElement> VerticalPositionChanged;
-    public readonly Inventory Inventory = new (23);
-    public readonly Inventory ArmorInventory = new EquipmentInventory(new[]
+    [RequireComponent(typeof(Rigidbody2D))]
+    public class PlayerEntity : BaseEntityBehaviour
     {
-        EquipmentType.Helmet,
-        EquipmentType.LeftHand,
-        EquipmentType.RightHand,
-        EquipmentType.Armor
-    });
-    private void Awake()
-    {
-        _rigidbody = GetComponent<Rigidbody2D>();
-        _directionalMover = new DirectionalMover(_rigidbody, _directionMovementData);
-        _jumper = new Jumper(_rigidbody, _jumpData);
-        CurrentPlayer = this;
+        public static PlayerEntity CurrentPlayer { private set; get; }
+
+        [SerializeField] private JumpData _jumpData;
+        [SerializeField] private DirectionalCameraPair _cameras;
+
+        private Jumper _jumper;
+        public float VerticalPosition => Rigidbody.position.y;
+        public event Action<ILevelGraphicElement> VerticalPositionChanged;
+
+        public readonly Inventory Inventory = new(23);
+
+        public readonly Inventory ArmorInventory = new EquipmentInventory(new[]
+        {
+            EquipmentType.Helmet,
+            EquipmentType.LeftHand,
+            EquipmentType.RightHand,
+            EquipmentType.Armor
+        });
+
+        protected override void Awake()
+        {
+            CurrentPlayer = this;
+            
+            base.Awake();
+            DirectionalMover = new VelocityMover(Rigidbody, 10);
+            _jumper = new Jumper(Rigidbody, _jumpData);
+        }
+
+        private void Update()
+        {
+            if (_jumper.IsJumping)
+                _jumper.UpdateJump();
+
+            UpdateAnimations();
+            UpdateCameras();
+        }
+
+
+        protected override void UpdateAnimations()
+        {
+            base.UpdateAnimations();
+            Animator.SetAnimationState(AnimationType.Jump, _jumper.IsJumping);
+        }
+
+        public override void MoveVertically(float verticalDirection)
+        {
+            if (_jumper.IsJumping)
+                return;
+
+            base.MoveVertically(verticalDirection);
+        }
+
+        public void StartAttack()
+        {
+            if (!(Animator.SetAnimationState(AnimationType.Attack, true)))
+                return;
+
+            Animator.ActionRequested += Attack;
+            Animator.AnimationEnded += EndAttack;
+        }
+
+        public void Jump() => _jumper.Jump();
+
+        private void Attack()
+        {
+            Debug.Log("Attack");
+        }
+
+        private void EndAttack()
+        {
+            Animator.ActionRequested -= Attack;
+            Animator.AnimationEnded -= EndAttack;
+            Animator.SetAnimationState(AnimationType.Attack, false);
+        }
+
+        private void UpdateCameras()
+        {
+            foreach (var cameraPair in _cameras.DirectionalCameras)
+                cameraPair.Value.enabled = cameraPair.Key == DirectionalMover.Direction;
+        }
     }
-    
-    private void Update()
-    {
-        if(_jumper.IsJumping)
-            _jumper.UpdateJump();
-
-        UpdateAnimations();
-        UpdateCameras();
-    }
-
-
-    private void UpdateAnimations()
-    {
-        _animator.PlayAnimation(AnimationType.Idle, true);
-        _animator.PlayAnimation(AnimationType.Run, _directionalMover.IsMoving);
-        _animator.PlayAnimation(AnimationType.Jump, _jumper.IsJumping);
-    }
-
-    public void MoveHorizontally(float direction) => _directionalMover.MoveHorizontally(direction);
-    public void MoveVertically(float direction) 
-    {
-        if(_jumper.IsJumping) 
-            return;
-
-        _directionalMover.MoveVertically(direction);
-        if(direction != 0)
-            VerticalPositionChanged?.Invoke(this);
-    }
-
-    public void StartAttack()
-    {
-        if (!(_animator.PlayAnimation(AnimationType.Attack, true)))
-            return;
-
-        _animator.ActionRequested += Attack;
-        _animator.AnimationEnded += EndAttack;
-    }
-
-    public void Jump() => _jumper.Jump();
-    
-    public void SetDrawingOrder(int order) => _sortingGroup.sortingOrder = order;
-    public void SetSize(Vector2 size) => transform.localScale = size;
-    public void SetVerticalPosition(float verticalPosition) => _rigidbody.position = new Vector2(_rigidbody.position.x, verticalPosition);
-    
-    private void Attack()
-    {
-        Debug.Log("Attack");
-    }
-
-    private void EndAttack()
-    {
-        _animator.ActionRequested -= Attack;
-        _animator.AnimationEnded -= EndAttack;
-        _animator.PlayAnimation(AnimationType.Attack, false);
-    }
-    private void UpdateCameras()
-    {
-        foreach (var cameraPair in _cameras.DirectionalCameras)
-            cameraPair.Value.enabled = cameraPair.Key == _directionalMover.Direction;
-    }
- }
 }
-

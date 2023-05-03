@@ -10,29 +10,48 @@ namespace Core.Animation
         public event Action ActionRequested;
         public event Action AnimationEnded;
 
-        public bool PlayAnimation(AnimationType animationType, bool active)
+        public bool SetAnimationState(AnimationType animationType, bool active, Action animationAction = null, Action endAnimationAction = null)
         {
             if(!active)
             {
                 if (_currentAnimationType == AnimationType.Idle || _currentAnimationType != animationType)
                     return false;
 
-                _currentAnimationType = AnimationType.Idle; 
-                PlayAnimation(_currentAnimationType);
+                ActionRequested = null;
+                AnimationEnded = null;
+                OnAnimationEnded();
                 return false;
             }
+                
+
 
             if(_currentAnimationType >= animationType)
                 return false;
             
-            _currentAnimationType = animationType;
-            PlayAnimation(_currentAnimationType);
+            ActionRequested = animationAction;
+            AnimationEnded = endAnimationAction;
+            SetAnimationState(animationType);
 
             return true;
         }
 
-        protected abstract void PlayAnimation(AnimationType animationType); 
-        protected void OnActionRequested() => ActionRequested?.Invoke();
-        protected void OnAnimationEnded() => AnimationEnded?.Invoke();
+        private void SetAnimation(AnimationType animationType)
+        {
+            _currentAnimationType = animationType;
+            SetAnimationState(_currentAnimationType);
+        }
+        
+        protected abstract void SetAnimationState(AnimationType animationType);
+
+        protected void OnActionRequested()
+        {
+            ActionRequested?.Invoke();
+        }
+
+        protected void OnAnimationEnded()
+        {
+            AnimationEnded?.Invoke();
+            SetAnimation(AnimationType.Idle);
+        }
     }
 }
