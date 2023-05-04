@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: EntitiesSpawnerDataStorage
   m_EditorClassIdentifier: 
   <EntitiesSpawnData>k__BackingField:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: e9c509287e9c5c047ba6e252cb215484, type: 2}

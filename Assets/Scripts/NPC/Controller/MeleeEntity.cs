@@ -30,7 +30,7 @@ namespace NPC.Controller
             _searchCoroutine = ProjectUpdater.Instance.StartCoroutine(SearchCoroutine());
             ProjectUpdater.Instance.FixedUpdateCalled += OnFixedUpdateCalled;
             //var speedDelta 
-            _moveDelta = new Vector2(4, 4 / 2);
+            _moveDelta = new Vector2(4f, 4 / 2f);
         }
 
         private IEnumerator SearchCoroutine()
@@ -41,7 +41,7 @@ namespace NPC.Controller
                 {
                     ResetMovement();
                 }
-                else if (TryGetTarget(out _target) && _target.transform.position != _previousTargetPosition)
+                else if (_target.transform.position != _previousTargetPosition)
                 {
                     Vector2 position = _target.transform.position;
                     _previousTargetPosition = position;
@@ -102,17 +102,19 @@ namespace NPC.Controller
                 }
             }
 
-            if (waypointDirection.x == 0)
-                return;
+            if (waypointDirection.x != 0)
+            {
 
-            waypointDirection.x = waypointDirection.x > 0 ? 1 : -1;
-            var newHorizontalPosition = currentPosition.x + _moveDelta.y * waypointDirection.x;
-            if (waypointDirection.x > 0 && waypointDirection.x < newHorizontalPosition ||
-                waypointDirection.x < 0 && waypointDirection.x > newHorizontalPosition)
-                newHorizontalPosition = waypointDirection.x;
 
-            if (newHorizontalPosition != _meleeEntityBehaviour.transform.position.x)
-                _meleeEntityBehaviour.MoveVertically(newHorizontalPosition);
+                waypointDirection.x = waypointDirection.x > 0 ? 1 : -1;
+                var newHorizontalPosition = currentPosition.x + _moveDelta.y * waypointDirection.x;
+                if (waypointDirection.x > 0 && waypointDirection.x < newHorizontalPosition ||
+                    waypointDirection.x < 0 && waypointDirection.x > newHorizontalPosition)
+                    newHorizontalPosition = waypointDirection.x;
+
+                if (newHorizontalPosition != _meleeEntityBehaviour.transform.position.x)
+                    _meleeEntityBehaviour.MoveVertically(newHorizontalPosition);
+            }
         }
 
         private bool CheckIfCanAttack()
@@ -126,6 +128,7 @@ namespace NPC.Controller
             _meleeEntityBehaviour.SetDirection(_meleeEntityBehaviour.transform.position.x > _target.transform.position.x
                 ? Direction.Left
                 : Direction.Right);
+            ResetMovement();
             _isAttacking = true;
             _meleeEntityBehaviour.StartAttack();
             if (_searchCoroutine != null)

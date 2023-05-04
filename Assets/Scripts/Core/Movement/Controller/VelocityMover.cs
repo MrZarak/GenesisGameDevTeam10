@@ -1,4 +1,5 @@
 ﻿using Core.Enums;
+using Core.Movement.Data;
 using UnityEngine;
 
 namespace Core.Movement.Controller
@@ -8,33 +9,34 @@ namespace Core.Movement.Controller
         private Vector2 _directionVector;
         private readonly float _vMovementScale;
         public override bool IsMoving => _directionVector.magnitude > 0;
+        
+        private readonly DirectionalMovementData _directionalMovementData;
 
-        public VelocityMover(Rigidbody2D rigidbody, float vMovementScale) : base(rigidbody)
+        public VelocityMover(Rigidbody2D rigidbody, DirectionalMovementData directionalMovementData) : base(rigidbody)
         {
-            _vMovementScale = vMovementScale;
+            _directionalMovementData = directionalMovementData;
+            _vMovementScale = directionalMovementData.HorizontalSpeed;
         }
 
         public override void MoveHorizontally(float direction)
         {
-            _directionVector = new Vector2(direction, _directionVector.y);
-
-            var horizontalMovement = direction * _vMovementScale;
-
-            Rigidbody.AddForce(new Vector2(horizontalMovement, 0), ForceMode2D.Impulse);
-
-            if (direction == 0)
+            _directionVector.x = direction;
+            Vector2 velocity = Rigidbody.velocity;
+            velocity.x = direction * _directionalMovementData.HorizontalSpeed;
+            Rigidbody.velocity = velocity;
+            if(direction == 0)
                 return;
-
-            SetDirection(horizontalMovement > 0 ? Direction.Right : Direction.Left);
+            
+            SetDirection(direction > 0 ? Direction.Right : Direction.Left);
         }
 
         public override void MoveVertically(float direction)
         {
-            _directionVector = new Vector2(_directionVector.x, direction);
-
-            var verticalMovement = direction;
-
-            Rigidbody.velocity = new Vector2(Rigidbody.velocity.y, verticalMovement);
+            
+            _directionVector.y = direction;
+            Vector2 velocity = Rigidbody.velocity;
+            velocity.y = direction * _directionalMovementData.VerticalSpeed;
+            Rigidbody.velocity = velocity;
         }
     }
 }

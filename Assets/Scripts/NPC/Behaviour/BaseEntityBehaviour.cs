@@ -14,7 +14,7 @@ namespace NPC.Behaviour
         protected Rigidbody2D Rigidbody;
         protected DirectionalMover DirectionalMover;
 
-        protected virtual void Awake()
+        public virtual void Awake()
         {
             Rigidbody = GetComponent<Rigidbody2D>();
         }

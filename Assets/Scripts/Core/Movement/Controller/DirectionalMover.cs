@@ -4,7 +4,7 @@ using Core.Movement.Data;
 
 namespace Core.Movement.Controller
 {
-    public abstract class DirectionalMover
+    public abstract class DirectionalMover : MonoBehaviour
     {
         protected readonly Rigidbody2D Rigidbody;
 
@@ -27,6 +27,7 @@ namespace Core.Movement.Controller
             if (newDirection == Direction)
                 return;
 
+            
             Direction = newDirection;
             var rotated = newDirection == Direction.Right;
             var current = Rigidbody.transform.rotation;

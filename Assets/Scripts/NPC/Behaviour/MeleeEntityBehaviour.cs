@@ -23,7 +23,7 @@ namespace NPC.Behaviour
             Gizmos.DrawWireCube(transform.position, SearchBox);
         }
 
-        protected override void Awake()
+        public override void Awake()
         {
             base.Awake();
             DirectionalMover = new PositionMover(Rigidbody);

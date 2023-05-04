@@ -16,12 +16,11 @@ namespace Player
     {
         public static PlayerEntity CurrentPlayer { private set; get; }
 
+        [SerializeField] private DirectionalMovementData _directionMovementData;
         [SerializeField] private JumpData _jumpData;
         [SerializeField] private DirectionalCameraPair _cameras;
 
         private Jumper _jumper;
-        public float VerticalPosition => Rigidbody.position.y;
-        public event Action<ILevelGraphicElement> VerticalPositionChanged;
 
         public readonly Inventory Inventory = new(23);
 
@@ -32,13 +31,14 @@ namespace Player
             EquipmentType.RightHand,
             EquipmentType.Armor
         });
-
-        protected override void Awake()
+        
+        
+        public override void Awake()
         {
             CurrentPlayer = this;
             
             base.Awake();
-            DirectionalMover = new VelocityMover(Rigidbody, 10);
+            DirectionalMover = new VelocityMover(Rigidbody, _directionMovementData);
             _jumper = new Jumper(Rigidbody, _jumpData);
         }
 
@@ -65,6 +65,7 @@ namespace Player
 
             base.MoveVertically(verticalDirection);
         }
+        
 
         public void StartAttack()
         {

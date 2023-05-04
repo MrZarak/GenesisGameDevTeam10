@@ -17,20 +17,16 @@ namespace Core.Animation
                 if (_currentAnimationType == AnimationType.Idle || _currentAnimationType != animationType)
                     return false;
 
-                ActionRequested = null;
-                AnimationEnded = null;
-                OnAnimationEnded();
+                _currentAnimationType = AnimationType.Idle; 
+                SetAnimation(_currentAnimationType);
                 return false;
             }
-                
-
 
             if(_currentAnimationType >= animationType)
                 return false;
             
-            ActionRequested = animationAction;
-            AnimationEnded = endAnimationAction;
-            SetAnimationState(animationType);
+            _currentAnimationType = animationType;
+            SetAnimation(_currentAnimationType);
 
             return true;
         }
