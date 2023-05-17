@@ -14,7 +14,7 @@ namespace Core.Movement.Controller
 
         public DirectionalMover(Rigidbody2D rigidbody)
         {
-            Direction = Direction.Right;
+            Direction = Direction.Left;
             Rigidbody = rigidbody;
         }
 
