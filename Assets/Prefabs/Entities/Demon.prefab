@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7924886595001394273}
   - component: {fileID: 4584906478664179531}
   - component: {fileID: 4519729026801538304}
+  - component: {fileID: 1019837129}
   m_Layer: 0
   m_Name: Demon
   m_TagString: Untagged
@@ -71,6 +72,26 @@ CapsuleCollider2D:
   m_Offset: {x: -0.14483503, y: -0.07798772}
   m_Size: {x: 1.324446, y: 0.7673899}
   m_Direction: 1
+--- !u!114 &1019837129
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4852094989956926653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2961be8ac474528b595e707a2294d5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Animator: {fileID: 3576298436658210512}
+  _sortingGroup: {fileID: 1942571969925788665}
+  _afterAttackDelay: 0.5
+  _collider2D: {fileID: 4519729026801538304}
+  <SearchBox>k__BackingField: {x: 10, y: 4}
+  <Targets>k__BackingField:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &5368210191323527353
 GameObject:
   m_ObjectHideFlags: 0

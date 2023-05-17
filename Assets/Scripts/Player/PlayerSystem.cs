@@ -1,22 +1,39 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
+using System.Linq;
 using Core;
+using Core.Services.Updater;
 using InputReader;
+using NPC.Controller;
 using UI;
 
 namespace Player
 {
-    public class PlayerSystem
+    public class PlayerSystem : IDisposable
     {
+        private readonly ProjectUpdater _projectUpdater;
         private readonly PlayerEntity _playerEntity;
-        private readonly PlayerBrain _playerBrain;
+        public PlayerBrain PlayerBrain { get; }
 
-        public PlayerSystem(
-            UIContext uiContext, PlayerEntity playerEntity, List<IEntityInputSource> inputSources,
+        private List<IDisposable> _disposables;
+
+        public PlayerSystem(UIContext uiContext,
+            PlayerEntity playerEntity,
+            List<IEntityInputSource> inputSources,
             GameLevelInitializer gameLevelInitializer
         )
         {
+            _disposables = new List<IDisposable>();
             _playerEntity = playerEntity;
-            _playerBrain = new PlayerBrain(uiContext, _playerEntity, inputSources, gameLevelInitializer);
+            PlayerBrain = new PlayerBrain(uiContext, _playerEntity, inputSources, gameLevelInitializer);
+        }
+
+
+        public void Dispose()
+        {
+            PlayerBrain?.Dispose();
         }
     }
 }

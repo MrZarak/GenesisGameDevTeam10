@@ -3647,7 +3647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b964d2ec79feb147b909666aa77a30c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _animator: {fileID: 1709530731}
+  Animator: {fileID: 1709530731}
   _sortingGroup: {fileID: 1225854745}
   _directionMovementData:
     <HorizontalSpeed>k__BackingField: 6
@@ -4442,6 +4442,7 @@ MonoBehaviour:
   playerEntity: {fileID: 1225854742}
   gameUIInputView: {fileID: 1930878272}
   itemRegistry: {fileID: 11400000, guid: 3af508cb8862dce469a870c74ce5b022, type: 2}
+  _spawnPoint: {fileID: 0}
 --- !u!4 &1609816409
 Transform:
   m_ObjectHideFlags: 0

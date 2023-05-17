@@ -7,9 +7,10 @@ namespace Core.Animation
     {
         private Animator _animator;
         private void Start() => _animator = GetComponent<Animator>();
-        
 
-        protected override void PlayAnimation(AnimationType animationType)
+
+
+        protected override void SetAnimationState(AnimationType animationType)
         {
             _animator.SetInteger(nameof(AnimationType), (int)animationType);
         }

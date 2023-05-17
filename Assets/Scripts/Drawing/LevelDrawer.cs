@@ -43,6 +43,14 @@ namespace Drawing
 
             _gameLayers.Add(_levelDrawingData.MinVerticalPosition, new GraphicGameLayer(_levelDrawingData.OrdersPerLayer * _gameLayers.Count));
         }
+
+        public void RedrawStaticEnvironment(Transform staticElementsContainer)
+        {
+            var elements = staticElementsContainer.GetComponentsInChildren<ILevelGraphicElement>();
+            foreach (var element in elements)
+                UpdateElement(element);
+        }
+        
         public void RegisterElement(ILevelGraphicElement element)
         {
             _graphicElements.Add(element);

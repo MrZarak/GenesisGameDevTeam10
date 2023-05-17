@@ -8,6 +8,8 @@ using UI;
 using UnityEngine;
 using Drawing;
 using Core.Enums;
+using NPC.Enum;
+using NPC.Spawn;
 using Random = UnityEngine.Random;
 
 namespace Core
@@ -17,6 +19,7 @@ namespace Core
         [SerializeField] private PlayerEntity playerEntity;
         [SerializeField] private GameUIInputView gameUIInputView;
         [SerializeField] private ItemRegistry itemRegistry;
+        [SerializeField] private Transform _spawnPoint;
 
         private ExternalDevicesInputReader _externalDevicesInput;
         private PlayerSystem _playerSystem;
@@ -26,6 +29,7 @@ namespace Core
 
         private List<IDisposable> _disposables;
         private LevelDrawer _levelDrawer;
+        private EntitySpawner _entitySpawner;
 
         private bool _onPause;
 
@@ -45,7 +49,9 @@ namespace Core
             _disposables.Add(_externalDevicesInput);
 
             _levelDrawer = new LevelDrawer(LevelId.Level1);
-            _levelDrawer.RegisterElement(playerEntity);
+            _levelDrawer.RegisterElement(_playerSystem.PlayerBrain);
+
+            _entitySpawner = new EntitySpawner(_levelDrawer);
         }
 
         private void InitProjectUpdater()
@@ -77,6 +83,8 @@ namespace Core
                 //todo single responsibility issue, fix that
                 _projectUpdater.IsPaused = !_projectUpdater.IsPaused;
             }
+            if(Input.GetKeyDown(KeyCode.Q))
+                _entitySpawner.SpawnEntity(EntityId.Demon, _spawnPoint.position);
         }
 
         private void OnDestroy()

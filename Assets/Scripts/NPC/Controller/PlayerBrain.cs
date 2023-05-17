@@ -4,13 +4,13 @@ using System.Linq;
 using Core;
 using Core.Services.Updater;
 using InputReader;
-using Items.Core;
+using Player;
 using UI;
 using UI.Enum;
 
-namespace Player
+namespace NPC.Controller
 {
-    public class PlayerBrain : IDisposable
+    public class PlayerBrain : Entity, IDisposable
     {
         private readonly PlayerEntity _playerEntity;
         private readonly List<IEntityInputSource> _inputSources;
@@ -18,6 +18,7 @@ namespace Player
         private readonly GameLevelInitializer _gameLevelInitializer;
 
         public PlayerBrain(UIContext uiContext, PlayerEntity playerEntity, List<IEntityInputSource> inputSources, GameLevelInitializer gameLevelInitializer)
+            : base(playerEntity)
         {
             _playerEntity = playerEntity;
             _uiContext = uiContext;
@@ -31,7 +32,12 @@ namespace Player
         private void OnFixedUpdate()
         {
             _playerEntity.MoveHorizontally(GetHorizontalDirection());
-            _playerEntity.MoveVertically(GetVerticalDirection());
+
+            float verticalDirection = GetVerticalDirection();
+            _playerEntity.MoveVertically(verticalDirection);
+            
+            if(verticalDirection != 0)
+                OnVerticalPositionChanged();
 
             if (IsJump)
                 _playerEntity.Jump();

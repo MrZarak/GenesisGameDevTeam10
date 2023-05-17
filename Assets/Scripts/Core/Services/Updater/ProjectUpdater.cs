@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Core.Services.Updater
@@ -24,6 +25,9 @@ namespace Core.Services.Updater
                 _isPaused = value;
             }
         }
+
+        Coroutine IProjectUpdater.StartCoroutine(IEnumerator coroutine) => StartCoroutine(coroutine);
+        void IProjectUpdater.StopCoroutine(Coroutine coroutine) => StopCoroutine(coroutine);
             
         private void Awake()
         {
@@ -32,7 +36,8 @@ namespace Core.Services.Updater
             else
                 Destroy(gameObject);
         }
-
+        
+        
         private void Update()
         {
             if(IsPaused)

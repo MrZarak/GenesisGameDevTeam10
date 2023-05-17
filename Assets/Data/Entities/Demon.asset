@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Demon
   m_EditorClassIdentifier: 
   <Id>k__BackingField: 1
-  <EntityBehaviourPrefab>k__BackingField: {fileID: 0}
+  <EntityBehaviourPrefab>k__BackingField: {fileID: 1019837129, guid: 3f0ce2a5603bb2c40848343050a90753, type: 3}
