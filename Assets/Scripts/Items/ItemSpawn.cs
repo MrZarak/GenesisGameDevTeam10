@@ -15,12 +15,12 @@ public class ItemSpawn : MonoBehaviour
     void Start()
     {
         lastSpawnPosition = gameObject.transform.position;
-        spawnItem(lastSpawnPosition);
+        SpawnItem(lastSpawnPosition);
 
-        StartCoroutine(itemsSpawn());
+        StartCoroutine(ItemsSpawn());
     }
 
-    private void spawnItem(Vector2 itemPosition)
+    private void SpawnItem(Vector2 itemPosition)
     {
 
         if (items.Count > 0)
@@ -34,11 +34,11 @@ public class ItemSpawn : MonoBehaviour
         }
     }
 
-    IEnumerator itemsSpawn()
+    IEnumerator ItemsSpawn()
     {
         while (true)
         {
-            spawnItem(lastSpawnPosition);
+            SpawnItem(lastSpawnPosition);
             yield return new WaitForSeconds(respawnTime);
         }
     }

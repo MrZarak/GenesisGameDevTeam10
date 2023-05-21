@@ -45,7 +45,6 @@ namespace NPC.Controller
             if (IsAttack)
             {
                 _playerEntity.StartAttack();
-                //_gameLevelInitializer.DropItemRandom();
             }
 
             if (IsInventoryClicked)
