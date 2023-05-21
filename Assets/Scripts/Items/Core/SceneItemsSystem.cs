@@ -15,6 +15,8 @@ namespace Items.Core
         private readonly GameObject _parentObject;
         private readonly PlayerEntity _playerEntity;
 
+        public static SceneItemsSystem Instance { get; private set; }
+
         public SceneItemsSystem(PlayerEntity playerEntity)
         {
             _playerEntity = playerEntity;
@@ -25,6 +27,8 @@ namespace Items.Core
             {
                 name = nameof(SceneItemsSystem)
             };
+
+            Instance = this;
         }
 
         public void DropItem(ItemContainer itemContainer, Vector2 position)

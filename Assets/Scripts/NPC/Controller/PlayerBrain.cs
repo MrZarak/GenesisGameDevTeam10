@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using Core;
@@ -45,7 +45,7 @@ namespace NPC.Controller
             if (IsAttack)
             {
                 _playerEntity.StartAttack();
-                _gameLevelInitializer.DropItemRandom();
+                //_gameLevelInitializer.DropItemRandom();
             }
 
             if (IsInventoryClicked)
