@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Core.Services.Updater;
 using InputReader;
@@ -93,19 +93,6 @@ namespace Core
             {
                 disposable.Dispose();
             }
-        }
-
-        public void DropItemRandom()
-        {
-            // todo remove in future, for testing purpose
-            var allIds = Enum.GetNames(typeof(ItemId));
-
-            var itemId = (ItemId)Math.Floor(Random.value * allIds.Length);
-
-            var itemById = itemRegistry.GetItemById(itemId);
-
-            var container = new ItemContainer(itemById, 1);
-            _sceneItemsSystem.DropItem(container, playerEntity.transform.position);
         }
     }
 }
