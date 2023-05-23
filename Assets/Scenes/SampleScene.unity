@@ -3299,6 +3299,7 @@ GameObject:
   - component: {fileID: 1225854742}
   - component: {fileID: 1225854744}
   - component: {fileID: 1225854745}
+  - component: {fileID: 1225854746}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -3402,6 +3403,22 @@ SortingGroup:
   m_SortingLayerID: 265821235
   m_SortingLayer: 1
   m_SortingOrder: 0
+--- !u!114 &1225854746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225854736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6550fd11906848346880571d0c05721b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  head: {fileID: 75716620}
+  armor: {fileID: 177239431}
+  shield: {fileID: 1391251987}
+  weapon: {fileID: 187217766}
 --- !u!1 &1261726577
 GameObject:
   m_ObjectHideFlags: 0

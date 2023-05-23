@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4034a0f48f9e2714787be73d5c44a22b, type: 3}
-  m_Name: Armor1
+  m_Name: Shield1
   m_EditorClassIdentifier: 
-  id: 27
-  baseName: Armor 1
-  baseDescription: armor 1
-  baseSprite: {fileID: 21300000, guid: 011d1e8850daabd429272ad012e38a56, type: 3}
+  id: 35
+  baseName: Shield 1
+  baseDescription: 
+  baseSprite: {fileID: 21300000, guid: b5fda4315b4822041a047df340b9fe8a, type: 3}
   baseRarity: 1
-  <BaseMaxStack>k__BackingField: 64
-  armorAmount: 55
-  <EquipmentType>k__BackingField: 3
+  <BaseMaxStack>k__BackingField: 1
+  <EquipmentType>k__BackingField: 4
+  <ArmorAmount>k__BackingField: 3

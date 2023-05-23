@@ -5,6 +5,7 @@ using Core.Movement.Data;
 using Core.Tools;
 using Drawing;
 using Items;
+using Items.Core;
 using Items.InventoryImpl;
 using NPC.Behaviour;
 using UnityEngine;
@@ -25,11 +26,11 @@ namespace Player
 
         public readonly Inventory Inventory = new(23);
 
-        public readonly Inventory ArmorInventory = new EquipmentInventory(new[]
+        public readonly EquipmentInventory ArmorInventory = new EquipmentInventory(new[]
         {
             EquipmentType.Helmet,
-            EquipmentType.LeftHand,
-            EquipmentType.RightHand,
+            EquipmentType.Shield,
+            EquipmentType.Weapon,
             EquipmentType.Armor
         });
         

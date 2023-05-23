@@ -5,7 +5,7 @@ namespace Items.InventoryImpl
 {
     public class EquipmentInventory : Inventory
     {
-        private EquipmentType[] _equipmentTypes;
+        private readonly EquipmentType[] _equipmentTypes;
 
         public EquipmentInventory(EquipmentType[] equipmentTypes) : base(equipmentTypes.Length)
         {
@@ -16,8 +16,22 @@ namespace Items.InventoryImpl
         {
             var inSlotType = _equipmentTypes[index];
 
-            var goodEquip = item.Item is EquipmentItem equipmentItem && equipmentItem.EquipmentType == inSlotType;
+            var goodEquip = item.Item is EquipmentItem equipmentItem && equipmentItem.GetType(item) == inSlotType;
             return goodEquip ? base.InsertItem(index, item, simulate) : item;
+        }
+
+        public ItemContainer GetItemByType(EquipmentType equipmentType)
+        {
+            for (var i = 0; i < _equipmentTypes.Length; i++)
+            {
+                var inSlotType = _equipmentTypes[i];
+                if (inSlotType == equipmentType)
+                {
+                    return GetItem(i);
+                }
+            }
+
+            return null;
         }
     }
 }

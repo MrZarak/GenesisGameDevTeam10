@@ -29,6 +29,20 @@
         LesserRunningScroll,
         PinkGiftbox,
         YellowGiftBox,
-        Armor1
+        Armor1,
+        Armor2,
+        Armor3,
+        Armor4,
+        Helmet1,
+        Helmet2,
+        Helmet3,
+        Helmet4,
+        Shield1,
+        Shield2,
+        Shield3,
+        Shield4,
+        Stick,
+        Sword,
+        EmeraldSword,
     }
 }
