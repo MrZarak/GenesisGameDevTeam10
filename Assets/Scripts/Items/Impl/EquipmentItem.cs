@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Items.Impl
 {
-    [CreateAssetMenu(fileName = "Equipment", menuName = "Items/Equipment", order = 0)]
+    [CreateAssetMenu(fileName = "EquipmentItem", menuName = "Items/EquipmentItem", order = 0)]
     public class EquipmentItem : BaseItem
     {
         [SerializeField] private float armorAmount;

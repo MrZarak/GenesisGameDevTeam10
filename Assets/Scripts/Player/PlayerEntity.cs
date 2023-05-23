@@ -19,6 +19,7 @@ namespace Player
         [SerializeField] private DirectionalMovementData _directionMovementData;
         [SerializeField] private JumpData _jumpData;
         [SerializeField] private DirectionalCameraPair _cameras;
+        [field: SerializeField] public PlayerStats PlayerStats { private set; get; }
 
         private Jumper _jumper;
 
@@ -49,6 +50,7 @@ namespace Player
 
             UpdateAnimations();
             UpdateCameras();
+            PlayerStats.OnUpdate();
         }
 
 

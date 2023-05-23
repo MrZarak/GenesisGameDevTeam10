@@ -1,45 +1,51 @@
-﻿using Items.Core;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using Items.Core;
 using UnityEngine;
 
-public class ItemSpawn : MonoBehaviour
+namespace Items
 {
-    [SerializeField] private List<Item> items = new List<Item>();
-    [SerializeField] private float respawnTime = 1.0f;
-    [SerializeField] private float itemSpawnInterval; 
-    [SerializeField] private int maxItemAmount = 1;
-
-    private Vector2 lastSpawnPosition;
-
-    void Start()
+    public class ItemSpawn : MonoBehaviour
     {
-        lastSpawnPosition = gameObject.transform.position;
-        SpawnItem(lastSpawnPosition);
+        [SerializeField] private List<Item> items = new List<Item>();
+        [SerializeField] private float initialDelay = 5.0f;
+        [SerializeField] private float respawnTime = 1.0f;
+        [SerializeField] private float itemSpawnSpreadRange = 3f;
+        [SerializeField] private int minItemAmount = 1;
+        [SerializeField] private int maxItemAmount = 1;
+        [SerializeField] private int maxSpawnIterations = 1;
 
-        StartCoroutine(ItemsSpawn());
-    }
-
-    private void SpawnItem(Vector2 itemPosition)
-    {
-
-        if (items.Count > 0)
+        void Start()
         {
-            Item item = items[Random.Range(0, items.Count)];
-            int itemAmount = Random.Range(1, maxItemAmount);
-            var itemContainer = new ItemContainer(item, itemAmount);
-            lastSpawnPosition += new Vector2(itemSpawnInterval, 0f);
-
-            SceneItemsSystem.Instance.DropItem(itemContainer, lastSpawnPosition);
+            StartCoroutine(ItemsSpawn());
         }
-    }
 
-    IEnumerator ItemsSpawn()
-    {
-        while (true)
+        private void SpawnItem()
         {
-            SpawnItem(lastSpawnPosition);
-            yield return new WaitForSeconds(respawnTime);
+            if (items.Count <= 0 || minItemAmount <= 0 || maxItemAmount < minItemAmount) return;
+
+            var item = items[Random.Range(0, items.Count)];
+            var itemAmount = Random.Range(minItemAmount, maxItemAmount);
+            var itemContainer = new ItemContainer(item, itemAmount);
+
+            var randX = Random.value - 0.5F;
+            var randY = Random.value - 0.5F;
+            var center = gameObject.transform.position;
+            var pos = new Vector2(itemSpawnSpreadRange * randX + center.x, itemSpawnSpreadRange * randY + center.y);
+
+            SceneItemsSystem.Instance.DropItem(itemContainer, pos);
+        }
+
+        private IEnumerator ItemsSpawn()
+        {
+            yield return new WaitForSeconds(initialDelay);
+            var i = 0;
+            while (maxSpawnIterations > i)
+            {
+                SpawnItem();
+                i++;
+                yield return new WaitForSeconds(respawnTime);
+            }
         }
     }
 }

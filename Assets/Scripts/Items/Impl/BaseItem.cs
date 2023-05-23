@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Items.Impl
 {
-    [CreateAssetMenu(fileName = "BaseItem", menuName = "Items/Base", order = 0)]
+    [CreateAssetMenu(fileName = "BaseItem", menuName = "Items/BaseItem", order = 0)]
     public class BaseItem : Item
     {
         [SerializeField] private ItemId id;
