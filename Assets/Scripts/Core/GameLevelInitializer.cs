@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using Core.Enums;
 using Core.Services.Updater;
+using Drawing;
 using InputReader;
 using Items.Core;
+using NPC.Enum;
+using NPC.Spawn;
 using Player;
 using UI;
 using UnityEngine;
-using Drawing;
-using Core.Enums;
-using NPC.Enum;
-using NPC.Spawn;
-using Random = UnityEngine.Random;
 
 namespace Core
 {
