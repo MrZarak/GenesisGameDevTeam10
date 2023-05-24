@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Core.Animation;
 using Core.Movement.Controller;
 using Core.Movement.Data;

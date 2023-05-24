@@ -53,6 +53,12 @@ namespace Core
             _entitySpawner = new EntitySpawner(_levelDrawer);
         }
 
+        private void Start()
+        {
+            Item item = itemRegistry.GetItemById(ItemId.Stick);
+            playerEntity.ArmorInventory.AddItem(new ItemContainer(item, 1), false);
+        }
+
         private void InitProjectUpdater()
         {
             if (ProjectUpdater.Instance == null)
