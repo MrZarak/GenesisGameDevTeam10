@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Sky
   m_EditorClassIdentifier: 
   <Id>k__BackingField: 4
-  <EntityBehaviourPrefab>k__BackingField: {fileID: 0}
+  <EntityBehaviourPrefab>k__BackingField: {fileID: 882927850773910128, guid: a75066c42e359c44d99b3300bebbf43d, type: 3}

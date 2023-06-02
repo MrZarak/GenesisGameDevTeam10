@@ -1,4 +1,5 @@
 ﻿using Items.Core;
+using NPC.Behaviour;
 using Player;
 using UnityEngine;
 
@@ -16,7 +17,7 @@ namespace Items.Impl
 
         public override bool TryToPickup(PlayerEntity playerEntity, ItemContainer itemContainer)
         {
-            playerEntity.PlayerStats.Heal(HealPoints);
+            playerEntity.gameObject.GetComponent<EntityCanBeAttacked>().Heal(HealPoints);
             return true;
         }
     }

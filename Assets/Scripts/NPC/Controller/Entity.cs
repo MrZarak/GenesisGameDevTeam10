@@ -9,13 +9,12 @@ namespace NPC.Controller
     {
         private readonly BaseEntityBehaviour _entityBehaviour;
 
-        public event Action<Entity> Died;
-
         public event Action<ILevelGraphicElement> VerticalPositionChanged;
 
         protected Entity(BaseEntityBehaviour entityBehaviour)
         {
             _entityBehaviour = entityBehaviour;
+            _entityBehaviour.EntityLinked = this;
         }
 
         public float VerticalPosition => _entityBehaviour.VerticalPosition;
@@ -25,6 +24,6 @@ namespace NPC.Controller
         public void SetVerticalPosition(float verticalPosition) =>
             _entityBehaviour.SetVerticalPosition(verticalPosition);
 
-        protected void OnVerticalPositionChanged() => VerticalPositionChanged?.Invoke(this);
+        public void OnVerticalPositionChanged() => VerticalPositionChanged?.Invoke(this);
     }
 }

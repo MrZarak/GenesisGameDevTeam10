@@ -28,7 +28,7 @@ namespace Core
 
         private List<IDisposable> _disposables;
         private LevelDrawer _levelDrawer;
-        private EntitySpawner _entitySpawner;
+        private EntitySpawnerController _entitySpawnerController;
 
         private bool _onPause;
 
@@ -50,13 +50,13 @@ namespace Core
             _levelDrawer = new LevelDrawer(LevelId.Level1);
             _levelDrawer.RegisterElement(_playerSystem.PlayerBrain);
 
-            _entitySpawner = new EntitySpawner(_levelDrawer);
+            _entitySpawnerController = new EntitySpawnerController(_levelDrawer);
         }
 
         private void Start()
         {
             Item item = itemRegistry.GetItemById(ItemId.Stick);
-            playerEntity.ArmorInventory.AddItem(new ItemContainer(item, 1), false);
+            playerEntity.EquipmentInventory.AddItem(new ItemContainer(item, 1), false);
         }
 
         private void InitProjectUpdater()
@@ -78,7 +78,7 @@ namespace Core
             {
                 gameUIInputView,
                 _externalDevicesInput,
-            }, this);
+            });
         }
 
         private void Update()
@@ -88,8 +88,12 @@ namespace Core
                 //todo single responsibility issue, fix that
                 _projectUpdater.IsPaused = !_projectUpdater.IsPaused;
             }
-            if(Input.GetKeyDown(KeyCode.Q))
-                _entitySpawner.SpawnEntity(EntityId.Demon, _spawnPoint.position);
+
+            if (Input.GetKeyDown(KeyCode.Q))
+                _entitySpawnerController.SpawnEntity(EntityId.Demon, _spawnPoint.position);
+
+            if (Input.GetKeyDown(KeyCode.U))
+                _entitySpawnerController.SpawnEntity(EntityId.King, _spawnPoint.position);
         }
 
         private void OnDestroy()

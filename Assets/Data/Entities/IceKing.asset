@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: IceKing
   m_EditorClassIdentifier: 
   <Id>k__BackingField: 2
-  <EntityBehaviourPrefab>k__BackingField: {fileID: 0}
+  <EntityBehaviourPrefab>k__BackingField: {fileID: 882927850773910128, guid: 0e1a548fa67401b4fa74fc4274e405ec, type: 3}

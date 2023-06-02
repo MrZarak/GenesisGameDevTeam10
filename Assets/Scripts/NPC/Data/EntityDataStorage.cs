@@ -1,6 +1,7 @@
-using UnityEngine;
-using NPC.Enum;
 using NPC.Behaviour;
+using NPC.Enum;
+using UnityEngine;
+
 namespace NPC.Data
 {
     [CreateAssetMenu(fileName = nameof(EntityDataStorage), menuName = ("EntitiesSpawner/EntityDataStorage"))]

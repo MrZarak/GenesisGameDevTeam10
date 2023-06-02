@@ -45,10 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items:
-  - {fileID: 11400000, guid: 72fea25111923444fa19ab96ce3781cb, type: 2}
+  - <Item>k__BackingField: {fileID: 0}
+    <MinAmount>k__BackingField: 1
+    <MaxAmount>k__BackingField: 1
+  - <Item>k__BackingField: {fileID: 0}
+    <MinAmount>k__BackingField: 1
+    <MaxAmount>k__BackingField: 1
   initialDelay: 5
   respawnTime: 10
-  itemSpawnSpreadRange: 0.5
-  minItemAmount: 1
-  maxItemAmount: 1
   maxSpawnIterations: 500
