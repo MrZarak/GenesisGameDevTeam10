@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Core;
 using Core.Services.Updater;
 using InputReader;
 using Player;
@@ -15,15 +14,13 @@ namespace NPC.Controller
         private readonly PlayerEntity _playerEntity;
         private readonly List<IEntityInputSource> _inputSources;
         private readonly UIContext _uiContext;
-        private readonly GameLevelInitializer _gameLevelInitializer;
 
-        public PlayerBrain(UIContext uiContext, PlayerEntity playerEntity, List<IEntityInputSource> inputSources, GameLevelInitializer gameLevelInitializer)
+        public PlayerBrain(UIContext uiContext, PlayerEntity playerEntity, List<IEntityInputSource> inputSources)
             : base(playerEntity)
         {
             _playerEntity = playerEntity;
             _uiContext = uiContext;
             _inputSources = inputSources;
-            _gameLevelInitializer = gameLevelInitializer;
             ProjectUpdater.Instance.FixedUpdateCalled += OnFixedUpdate;
         }
 
@@ -35,8 +32,8 @@ namespace NPC.Controller
 
             float verticalDirection = GetVerticalDirection();
             _playerEntity.MoveVertically(verticalDirection);
-            
-            if(verticalDirection != 0)
+
+            if (verticalDirection != 0)
                 OnVerticalPositionChanged();
 
             if (IsJump)

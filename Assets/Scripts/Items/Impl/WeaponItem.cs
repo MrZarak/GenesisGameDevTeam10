@@ -1,5 +1,4 @@
 using Items.Core;
-using Player;
 using UnityEngine;
 
 namespace Items.Impl

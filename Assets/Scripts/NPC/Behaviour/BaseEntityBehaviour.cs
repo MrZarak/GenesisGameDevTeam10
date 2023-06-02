@@ -1,22 +1,25 @@
-using UnityEngine;
 using Core.Animation;
-using UnityEngine.Rendering;
 using Core.Movement.Controller;
+using NPC.Controller;
+using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace NPC.Behaviour
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class BaseEntityBehaviour : MonoBehaviour
     {
-        [SerializeField] protected AnimatorController Animator;
-        [SerializeField] private SortingGroup _sortingGroup;
+        [SerializeField] protected AnimatorController animator;
 
         protected Rigidbody2D Rigidbody;
         protected DirectionalMover DirectionalMover;
+        public Entity EntityLinked;
+        private SortingGroup _sortingGroup;
 
         public virtual void Awake()
         {
             Rigidbody = GetComponent<Rigidbody2D>();
+            _sortingGroup = GetComponent<SortingGroup>();
         }
 
         public float VerticalPosition => transform.position.y;
@@ -31,8 +34,8 @@ namespace NPC.Behaviour
 
         protected virtual void UpdateAnimations()
         {
-            Animator.SetAnimationState(AnimationType.Idle, true);
-            Animator.SetAnimationState(AnimationType.Run, DirectionalMover.IsMoving);
+            animator.SetAnimationState(AnimationType.Idle, true);
+            animator.SetAnimationState(AnimationType.Run, DirectionalMover.IsMoving);
         }
     }
 }

@@ -1,16 +1,16 @@
-using UnityEngine;
 using Core.Enums;
-using Core.Movement.Data;
+using UnityEngine;
 
 namespace Core.Movement.Controller
 {
-    public abstract class DirectionalMover : MonoBehaviour
+    public abstract class DirectionalMover
     {
         protected readonly Rigidbody2D Rigidbody;
 
         public Direction Direction { get; private set; }
 
         public abstract bool IsMoving { get; }
+        public abstract bool IsLeftTurned { get; }
 
         public DirectionalMover(Rigidbody2D rigidbody)
         {
@@ -27,9 +27,9 @@ namespace Core.Movement.Controller
             if (newDirection == Direction)
                 return;
 
-            
+
             Direction = newDirection;
-            var rotated = newDirection == Direction.Right;
+            var rotated = IsLeftTurned ? newDirection == Direction.Right : newDirection == Direction.Left;
             var current = Rigidbody.transform.rotation;
             Rigidbody.transform.rotation = new Quaternion(current.x, rotated ? 180 : 0, current.z, current.w);
         }

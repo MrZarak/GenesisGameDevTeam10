@@ -1,48 +1,44 @@
 ﻿using System;
-using NPC;
+using NPC.Behaviour;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Player
 {
-    [Serializable]
-    public class PlayerStats : EntityStats
+    [RequireComponent(typeof(PlayerEntity))]
+    [RequireComponent(typeof(EntityCanBeAttacked))]
+    public class PlayerStats : MonoBehaviour
     {
-        [field: SerializeField] public int Money { get; private set; }
-        [field: SerializeField] public int Xp { get; private set; }
         [SerializeField] private Mask hpMask;
         [SerializeField] private TMP_Text moneyText;
         [SerializeField] private TMP_Text xpText;
 
         private float _prevHealth;
         private float _prevMaxHealth;
+        private PlayerEntity _playerEntity;
+        private EntityCanBeAttacked _entityCanBeAttacked;
+        private RectTransform _maskParentTransform;
 
-        public void AddMoney(int money)
+        private void Awake()
         {
-            Money += money;
+            _playerEntity = GetComponent<PlayerEntity>();
+            _entityCanBeAttacked = GetComponent<EntityCanBeAttacked>();
+            _maskParentTransform = hpMask.rectTransform.parent.GetComponent<RectTransform>();
         }
 
-        public void AddXp(int xp)
+        public void FixedUpdate()
         {
-            Money += xp;
-        }
-
-        public override void OnUpdate()
-        {
-            base.OnUpdate();
-           
-            moneyText.text = Money.ToString();
-            xpText.text = Xp.ToString();
-            if (_prevHealth != Health || _prevMaxHealth != MaxHealth)
+            moneyText.text = _playerEntity.Money.ToString();
+            xpText.text = _playerEntity.Xp.ToString();
+            if (_prevHealth != _entityCanBeAttacked.Health || _prevMaxHealth != _entityCanBeAttacked.MaxHealth)
             {
-                var maskParentTransform = hpMask.rectTransform.parent.GetComponent<RectTransform>();
-                var parentH = maskParentTransform.rect.height;
-                var height = Math.Min(1F, Health / MaxHealth) * parentH;
+                var parentH = _maskParentTransform.rect.height;
+                var height = Math.Min(1F, _entityCanBeAttacked.Health / _entityCanBeAttacked.MaxHealth) * parentH;
                 hpMask.rectTransform.anchoredPosition = new Vector2(0, -(parentH - height) / 2);
                 hpMask.rectTransform.sizeDelta = new Vector2(hpMask.rectTransform.sizeDelta.x, height);
-                _prevHealth = Health;
-                _prevMaxHealth = MaxHealth;
+                _prevHealth = _entityCanBeAttacked.Health;
+                _prevMaxHealth = _entityCanBeAttacked.MaxHealth;
             }
         }
     }

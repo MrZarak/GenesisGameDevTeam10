@@ -18,7 +18,7 @@ namespace Player
 
         private void FixedUpdate()
         {
-            var armorInv = _playerEntity.ArmorInventory;
+            var armorInv = _playerEntity.EquipmentInventory;
             var headItem = armorInv.GetItemByType(EquipmentType.Helmet);
             var armorItem = armorInv.GetItemByType(EquipmentType.Armor);
             var shieldItem = armorInv.GetItemByType(EquipmentType.Shield);

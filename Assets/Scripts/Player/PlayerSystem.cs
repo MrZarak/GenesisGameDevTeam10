@@ -1,9 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using System.Linq;
-using Core;
 using Core.Services.Updater;
 using InputReader;
 using NPC.Controller;
@@ -19,15 +15,11 @@ namespace Player
 
         private List<IDisposable> _disposables;
 
-        public PlayerSystem(UIContext uiContext,
-            PlayerEntity playerEntity,
-            List<IEntityInputSource> inputSources,
-            GameLevelInitializer gameLevelInitializer
-        )
+        public PlayerSystem(UIContext uiContext, PlayerEntity playerEntity, List<IEntityInputSource> inputSources)
         {
             _disposables = new List<IDisposable>();
             _playerEntity = playerEntity;
-            PlayerBrain = new PlayerBrain(uiContext, _playerEntity, inputSources, gameLevelInitializer);
+            PlayerBrain = new PlayerBrain(uiContext, _playerEntity, inputSources);
         }
 
 

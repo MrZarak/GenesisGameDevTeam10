@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using Items;
 using Items.Core;
 using Player;
 using Ui.Core;
@@ -34,7 +33,7 @@ namespace UI.Impl.Controller
             _sceneItemsSystem = sceneItemsSystem;
             _playerEntity = playerEntity;
             _backPackInventory = playerEntity.Inventory;
-            _equipmentInventory = playerEntity.ArmorInventory;
+            _equipmentInventory = playerEntity.EquipmentInventory;
         }
 
         public override void OnInit()

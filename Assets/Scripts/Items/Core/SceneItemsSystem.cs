@@ -5,6 +5,7 @@ using Player;
 using Unity.VisualScripting;
 using UnityEngine;
 using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 namespace Items.Core
 {
@@ -50,6 +51,23 @@ namespace Items.Core
             _itemsOnScene[created] = itemContainer;
         }
 
+        public void DropRandomItem(List<SerializedDropItemContainer> items, Vector2 pos)
+        {
+            if (items is not { Count: > 0 }) return;
+            
+            var item = items[Random.Range(0, items.Count)];
+            if (item == null) return;
+
+            var minItemAmount = item.MinAmount;
+            var maxItemAmount = item.MaxAmount;
+            var itemAmount = Random.Range(minItemAmount, maxItemAmount);
+
+            if (itemAmount <= 0) return;
+            var itemContainer = new ItemContainer(item.Item, itemAmount);
+
+            DropItem(itemContainer, pos);
+        }
+
         private void TryToPickupItems(SceneItem sceneItem)
         {
             if (!sceneItem.CanBePickedUp()) return;
@@ -80,7 +98,5 @@ namespace Items.Core
                 DetachSceneItem(sceneItem);
             }
         }
-
-       
     }
 }

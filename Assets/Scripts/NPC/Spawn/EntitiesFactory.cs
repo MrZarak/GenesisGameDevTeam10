@@ -1,9 +1,9 @@
 using System;
 using NPC.Behaviour;
 using NPC.Controller;
+using NPC.Data;
 using NPC.Enum;
 using UnityEngine;
-using NPC.Data;
 using Object = UnityEngine.Object;
 
 namespace NPC.Spawn
@@ -18,7 +18,7 @@ namespace NPC.Spawn
             _entitiesSpawnerDataStorage = entitiesSpawnerDataStorage;
             var gameObject = new GameObject
             {
-                name = nameof(EntitySpawner)
+                name = nameof(EntitySpawnerController)
             };
             _entitiesContainer = gameObject.transform;
         }
@@ -28,17 +28,11 @@ namespace NPC.Spawn
             var data = _entitiesSpawnerDataStorage.EntitiesSpawnData.Find(element => element.Id == entityId);
             var baseEntityBehaviour = Object.Instantiate(data.EntityBehaviourPrefab, position, Quaternion.identity);
             baseEntityBehaviour.transform.SetParent(_entitiesContainer);
-            switch (entityId)
+            return entityId switch
             {
-                case EntityId.King:
-                case EntityId.Demon:
-                    return new MeleeEntity(baseEntityBehaviour as MeleeEntityBehaviour);
-                case EntityId.Sky:
-                case EntityId.IceKing:
-                    case EntityId.None:
-                    default:
-                    throw new NotImplementedException();
-            }
+                EntityId.None => throw new ArgumentException("None entity could not be spawner"),
+                _ => new MeleeEntity(baseEntityBehaviour as MeleeEntityBehaviour)
+            };
         }
     }
 }

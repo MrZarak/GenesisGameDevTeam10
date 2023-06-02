@@ -1,5 +1,8 @@
-﻿namespace Items.Core
+﻿using System;
+
+namespace Items.Core
 {
+    [Serializable]
     public class ItemContainer
     {
         public readonly Item Item;

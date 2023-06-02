@@ -16,7 +16,7 @@ namespace Items.Impl
 
         public override bool TryToPickup(PlayerEntity playerEntity, ItemContainer itemContainer)
         {
-            playerEntity.PlayerStats.AddMoney(MoneyPoints);
+            playerEntity.AddMoney(MoneyPoints);
             return true;
         }
     }

@@ -1,18 +1,19 @@
-﻿using System;
-using Core.Animation;
+﻿using Core.Animation;
+using Core.Enums;
 using Core.Movement.Controller;
 using Core.Movement.Data;
 using Core.Tools;
-using Drawing;
-using Items;
 using Items.Core;
+using Items.Impl;
 using Items.InventoryImpl;
 using NPC.Behaviour;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Player
 {
     [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(EntityCanBeAttacked))]
     public class PlayerEntity : BaseEntityBehaviour
     {
         public static PlayerEntity CurrentPlayer { private set; get; }
@@ -20,28 +21,43 @@ namespace Player
         [SerializeField] private DirectionalMovementData _directionMovementData;
         [SerializeField] private JumpData _jumpData;
         [SerializeField] private DirectionalCameraPair _cameras;
-        [field: SerializeField] public PlayerStats PlayerStats { private set; get; }
+        [SerializeField] private float attackDistance = 1;
+        [SerializeField] private LayerMask attackMask;
+        [field: SerializeField] public int Money { get; private set; }
+        [field: SerializeField] public int Xp { get; private set; }
 
         private Jumper _jumper;
+        private EntityCanBeAttacked _entityCanBeAttacked;
 
         public readonly Inventory Inventory = new(23);
 
-        public readonly EquipmentInventory ArmorInventory = new EquipmentInventory(new[]
+        public readonly EquipmentInventory EquipmentInventory = new(new[]
         {
             EquipmentType.Helmet,
             EquipmentType.Shield,
             EquipmentType.Weapon,
             EquipmentType.Armor
         });
-        
-        
+
+
         public override void Awake()
         {
             CurrentPlayer = this;
-            
+
             base.Awake();
             DirectionalMover = new VelocityMover(Rigidbody, _directionMovementData);
             _jumper = new Jumper(Rigidbody, _jumpData);
+            _entityCanBeAttacked = GetComponent<EntityCanBeAttacked>();
+        }
+
+        private void Start()
+        {
+            _entityCanBeAttacked.OnDeath += OnDeath;
+        }
+
+        private void OnDestroy()
+        {
+            _entityCanBeAttacked.OnDeath -= OnDeath;
         }
 
         private void Update()
@@ -51,14 +67,18 @@ namespace Player
 
             UpdateAnimations();
             UpdateCameras();
-            PlayerStats.OnUpdate();
+        }
+
+        private void FixedUpdate()
+        {
+            UpdateArmor();
         }
 
 
         protected override void UpdateAnimations()
         {
             base.UpdateAnimations();
-            Animator.SetAnimationState(AnimationType.Jump, _jumper.IsJumping);
+            animator.SetAnimationState(AnimationType.Jump, _jumper.IsJumping);
         }
 
         public override void MoveVertically(float verticalDirection)
@@ -68,35 +88,90 @@ namespace Player
 
             base.MoveVertically(verticalDirection);
         }
-        
+
 
         public void StartAttack()
         {
-            if (!(Animator.SetAnimationState(AnimationType.Attack, true)))
+            if (!(animator.SetAnimationState(AnimationType.Attack, true)))
                 return;
 
-            Animator.ActionRequested += Attack;
-            Animator.AnimationEnded += EndAttack;
+            animator.ActionRequested += Attack;
+            animator.AnimationEnded += EndAttack;
         }
 
         public void Jump() => _jumper.Jump();
 
         private void Attack()
         {
-            Debug.Log("Attack");
+            var direction = new Vector2(DirectionalMover.Direction == Direction.Right ? 1 : -1, 0);
+            var shift = direction * attackDistance * 2;
+            var center = transform.position.ConvertTo<Vector2>() + shift;
+
+            var objects = Physics2D.OverlapCircleAll(center, attackDistance, attackMask);
+            if (objects.Length <= 0) return;
+
+            var damage = 1F;
+            var weapon = EquipmentInventory.GetItemByType(EquipmentType.Weapon).Item;
+            if (weapon != null && weapon is WeaponItem item)
+            {
+                damage = item.AttackAmount;
+            }
+
+            foreach (var c in objects)
+            {
+                if (c.gameObject.TryGetComponent<EntityCanBeAttacked>(out var withHealth))
+                {
+                    withHealth.OnAttack(gameObject, damage);
+                }
+            }
         }
 
         private void EndAttack()
         {
-            Animator.ActionRequested -= Attack;
-            Animator.AnimationEnded -= EndAttack;
-            Animator.SetAnimationState(AnimationType.Attack, false);
+            animator.ActionRequested -= Attack;
+            animator.AnimationEnded -= EndAttack;
+            animator.SetAnimationState(AnimationType.Attack, false);
         }
 
         private void UpdateCameras()
         {
             foreach (var cameraPair in _cameras.DirectionalCameras)
                 cameraPair.Value.enabled = cameraPair.Key == DirectionalMover.Direction;
+        }
+
+        private void UpdateArmor()
+        {
+            var armor = 0F;
+            var items = new[]
+            {
+                EquipmentInventory.GetItemByType(EquipmentType.Armor)?.Item,
+                EquipmentInventory.GetItemByType(EquipmentType.Shield)?.Item,
+                EquipmentInventory.GetItemByType(EquipmentType.Helmet)?.Item,
+            };
+            foreach (var item in items)
+            {
+                if (item is ArmorItem armorItem)
+                {
+                    armor += armorItem.ArmorAmount;
+                }
+            }
+
+            _entityCanBeAttacked.Armor = armor;
+        }
+
+        public void AddMoney(int money)
+        {
+            Money += money;
+        }
+
+        public void AddXp(int xp)
+        {
+            Xp += xp;
+        }
+
+        private void OnDeath()
+        {
+            Debug.Log("PLAYER DEATH");
         }
     }
 }

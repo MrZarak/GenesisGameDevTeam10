@@ -10,7 +10,7 @@ namespace Core.Animation
         public event Action ActionRequested;
         public event Action AnimationEnded;
 
-        public bool SetAnimationState(AnimationType animationType, bool active, Action animationAction = null, Action endAnimationAction = null)
+        public bool SetAnimationState(AnimationType animationType, bool active)
         {
             if(!active)
             {
@@ -21,13 +21,13 @@ namespace Core.Animation
                 SetAnimation(_currentAnimationType);
                 return false;
             }
-
+    
             if(_currentAnimationType >= animationType)
                 return false;
             
             _currentAnimationType = animationType;
             SetAnimation(_currentAnimationType);
-
+            
             return true;
         }
 
