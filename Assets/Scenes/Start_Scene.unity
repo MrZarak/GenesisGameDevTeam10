@@ -161,8 +161,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -174}
-  m_SizeDelta: {x: 547.2213, y: 159.3971}
+  m_AnchoredPosition: {x: -0.000015259, y: -117.49}
+  m_SizeDelta: {x: 772.51, y: 225.019}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &255848995
 MonoBehaviour:
@@ -716,17 +716,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1308445378}
-  m_LocalRotation: {x: -0.1213205, y: 0.99258715, z: -0.00087681925, w: 0.0071737235}
-  m_LocalPosition: {x: 0, y: 0, z: -0}
+  m_LocalRotation: {x: 0.117291726, y: 0.985727, z: -0.11946921, w: 0.017669251}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 562957205}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 179.172, z: -13.937}
+  m_LocalEulerAnglesHint: {x: 13.867, y: 179.598, z: 13.523}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 506, y: -508}
+  m_AnchoredPosition: {x: 545, y: -530}
   m_SizeDelta: {x: 600, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1308445380
@@ -802,8 +802,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 282}
-  m_SizeDelta: {x: 1019.9729, y: 281.2058}
+  m_AnchoredPosition: {x: -0.000061035, y: 242}
+  m_SizeDelta: {x: 1261.7263, y: 281.2058}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1649266990
 MonoBehaviour:
@@ -826,19 +826,19 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 150
-    m_FontStyle: 0
+    m_Font: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
+    m_FontSize: 200
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 1
-    m_MaxSize: 150
+    m_MaxSize: 200
     m_Alignment: 0
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Slime W     rld
+  m_Text: Slime W    rld
 --- !u!222 &1649266991
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -962,8 +962,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 148, y: 334}
-  m_SizeDelta: {x: 323.61, y: 303.7}
+  m_AnchoredPosition: {x: 231, y: 257.07727}
+  m_SizeDelta: {x: 339.72, y: 366.7749}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1706631811
 MonoBehaviour:
