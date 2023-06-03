@@ -30,7 +30,7 @@ namespace Player
         public void FixedUpdate()
         {
             moneyText.text = _playerEntity.Money.ToString();
-            xpText.text = _playerEntity.Xp.ToString();
+            xpText.text = _playerEntity.Xp.ToString() + " / " + "1  ";
             if (_prevHealth != _entityCanBeAttacked.Health || _prevMaxHealth != _entityCanBeAttacked.MaxHealth)
             {
                 var parentH = _maskParentTransform.rect.height;
