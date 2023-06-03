@@ -9,13 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 73d289d43ad8420285ab8a65510feaf8, type: 3}
-  m_Name: Stick
+  m_Script: {fileID: 11500000, guid: f6a01afcf87949ea9ca74738e141faec, type: 3}
+  m_Name: LesserHealth
   m_EditorClassIdentifier: 
-  id: 39
-  baseName: Stick
+  id: 14
+  baseName: Lesser Health
   baseDescription: 
-  baseSprite: {fileID: 21300000, guid: 5cb7cf15bee5c3c488369431849f8a20, type: 3}
-  baseRarity: 1
-  <BaseMaxStack>k__BackingField: 1
-  <AttackAmount>k__BackingField: 25
+  baseSprite: {fileID: 21300000, guid: a7c7b4870fc8a4ce690390a9ae6cdd6c, type: 3}
+  baseRarity: 2
+  <BaseMaxStack>k__BackingField: 55
