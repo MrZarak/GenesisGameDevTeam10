@@ -83,6 +83,22 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: af763f647fa6c4748a0dcc80869dd15c, type: 3}
+    - target: {fileID: 1567442560688042757, guid: 779aa01634a012c4596b870d001f3272, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567442560688042757, guid: 779aa01634a012c4596b870d001f3272, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567442560688042757, guid: 779aa01634a012c4596b870d001f3272, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1567442560688042757, guid: 779aa01634a012c4596b870d001f3272, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4270690965139044528, guid: 779aa01634a012c4596b870d001f3272, type: 3}
       propertyPath: <Health>k__BackingField
       value: 50
