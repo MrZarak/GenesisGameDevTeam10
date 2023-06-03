@@ -8,17 +8,85 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1019837129, guid: 779aa01634a012c4596b870d001f3272, type: 3}
+      propertyPath: xp
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1019837129, guid: 779aa01634a012c4596b870d001f3272, type: 3}
       propertyPath: speed
       value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 1019837129, guid: 779aa01634a012c4596b870d001f3272, type: 3}
       propertyPath: attackDamage
-      value: 4
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1019837129, guid: 779aa01634a012c4596b870d001f3272, type: 3}
+      propertyPath: drop.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1019837129, guid: 779aa01634a012c4596b870d001f3272, type: 3}
+      propertyPath: afterAttackCooldown
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1019837129, guid: 779aa01634a012c4596b870d001f3272, type: 3}
+      propertyPath: drop.Array.data[0].<Item>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 4e76eaca58401e24fb079c5c8dd8e03c, type: 2}
+    - target: {fileID: 1019837129, guid: 779aa01634a012c4596b870d001f3272, type: 3}
+      propertyPath: drop.Array.data[1].<Item>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: ef9a8d1cfb8f70444a761af1f74f2236, type: 2}
+    - target: {fileID: 1019837129, guid: 779aa01634a012c4596b870d001f3272, type: 3}
+      propertyPath: drop.Array.data[2].<Item>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 4c34f5fc5af2099488ea9461b45221a6, type: 2}
+    - target: {fileID: 1019837129, guid: 779aa01634a012c4596b870d001f3272, type: 3}
+      propertyPath: drop.Array.data[3].<Item>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 4c34f5fc5af2099488ea9461b45221a6, type: 2}
+    - target: {fileID: 1019837129, guid: 779aa01634a012c4596b870d001f3272, type: 3}
+      propertyPath: drop.Array.data[0].<MaxAmount>k__BackingField
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1019837129, guid: 779aa01634a012c4596b870d001f3272, type: 3}
+      propertyPath: drop.Array.data[0].<MinAmount>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1019837129, guid: 779aa01634a012c4596b870d001f3272, type: 3}
+      propertyPath: drop.Array.data[1].<MaxAmount>k__BackingField
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1019837129, guid: 779aa01634a012c4596b870d001f3272, type: 3}
+      propertyPath: drop.Array.data[1].<MinAmount>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1019837129, guid: 779aa01634a012c4596b870d001f3272, type: 3}
+      propertyPath: drop.Array.data[2].<MaxAmount>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1019837129, guid: 779aa01634a012c4596b870d001f3272, type: 3}
+      propertyPath: drop.Array.data[2].<MinAmount>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1019837129, guid: 779aa01634a012c4596b870d001f3272, type: 3}
+      propertyPath: drop.Array.data[3].<MaxAmount>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1019837129, guid: 779aa01634a012c4596b870d001f3272, type: 3}
+      propertyPath: drop.Array.data[3].<MinAmount>k__BackingField
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1567442560688042757, guid: 779aa01634a012c4596b870d001f3272, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: bcceb871c32043c4da9858f8dc8c05c2, type: 3}
+    - target: {fileID: 4270690965139044528, guid: 779aa01634a012c4596b870d001f3272, type: 3}
+      propertyPath: <Health>k__BackingField
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4270690965139044528, guid: 779aa01634a012c4596b870d001f3272, type: 3}
+      propertyPath: <MaxHealth>k__BackingField
+      value: 75
+      objectReference: {fileID: 0}
     - target: {fileID: 4365776526637506660, guid: 779aa01634a012c4596b870d001f3272, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

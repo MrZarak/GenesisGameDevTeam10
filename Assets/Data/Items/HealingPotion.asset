@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: HealingPotion
   m_EditorClassIdentifier: 
   id: 1
-  baseName: Heal 25
+  baseName: Heal +50
   baseDescription: None
   baseSprite: {fileID: 21300000, guid: ee1724ab630d24cebb282289abcf17e1, type: 3}
   baseRarity: 0
   <BaseMaxStack>k__BackingField: 1
-  <HealPoints>k__BackingField: 25
+  <HealPoints>k__BackingField: 50
