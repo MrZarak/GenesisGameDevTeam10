@@ -28,14 +28,6 @@ namespace Core.Services.Updater
         Coroutine IProjectUpdater.StartCoroutine(IEnumerator coroutine) => StartCoroutine(coroutine);
         void IProjectUpdater.StopCoroutine(Coroutine coroutine) => StopCoroutine(coroutine);
 
-        // private void Awake()
-        // {
-        //     Debug.Log("12");
-
-        //     Instance = this;
-
-        // }
-
         private void Awake()
         {
             if (Instance != null && Instance != this)

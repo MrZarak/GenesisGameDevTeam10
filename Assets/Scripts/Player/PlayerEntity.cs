@@ -43,23 +43,12 @@ namespace Player
 
         public override void Awake()
         {
-            // CurrentPlayer = this;
-
-            if (CurrentPlayer != null && CurrentPlayer != this)
-            {
-                Destroy(gameObject);
-                return;
-            }
-
             CurrentPlayer = this;
-            DontDestroyOnLoad(gameObject);
 
             base.Awake();
             DirectionalMover = new VelocityMover(Rigidbody, _directionMovementData);
             _jumper = new Jumper(Rigidbody, _jumpData);
             _entityCanBeAttacked = GetComponent<EntityCanBeAttacked>();
-
-             
         }
 
         private void Start()
@@ -179,7 +168,7 @@ namespace Player
         public void AddXp(int xp)
         {
             Xp += xp;
-            if(Xp == 1)  SceneManager.LoadScene("NextLevel_Scene");
+            if (Xp == 1) SceneManager.LoadScene("NextLevel_Scene");
         }
 
         private void OnDeath()

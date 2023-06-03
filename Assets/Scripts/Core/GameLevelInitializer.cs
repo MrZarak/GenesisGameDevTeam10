@@ -79,6 +79,8 @@ namespace Core
                 gameUIInputView,
                 _externalDevicesInput,
             });
+            
+            _disposables.Add(_playerSystem);
         }
 
         private void Update()
