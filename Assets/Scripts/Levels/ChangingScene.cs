@@ -5,7 +5,7 @@ public class ChangingScene : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("Level1");
     }
     public void NextLevel()
     {
@@ -13,11 +13,14 @@ public class ChangingScene : MonoBehaviour
     }
     public void Die()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 3);
+        SceneManager.LoadScene("Level1");
     }
     public void RestartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 3);
+        SceneManager.LoadScene("Level1");
+    }
+    public void Level_Die(){
+        SceneManager.LoadScene("Die_scene");
     }
 
     public void QuitGame()

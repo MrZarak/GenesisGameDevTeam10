@@ -65,7 +65,13 @@ namespace NPC.Behaviour
                 StartAttack(target);
             }
         }
-
+        
+        public override void OnDestroy()
+        {
+            base.OnDestroy();
+            ProjectUpdater.Instance.FixedUpdateCalled -= OnFixedUpdateCalled;
+        }
+        
         private void StartAttack(PlayerEntity target)
         {
             _isAttacking = true;
@@ -90,13 +96,7 @@ namespace NPC.Behaviour
             base.UpdateAnimations();
             animator.SetAnimationState(AnimationType.Attack, _isAttacking);
         }
-
-        protected override void OnDeath()
-        {
-            ProjectUpdater.Instance.FixedUpdateCalled -= OnFixedUpdateCalled;
-            base.OnDeath();
-        }
-
+        
         protected override void AfterAttacked()
         {
             base.AfterAttacked();

@@ -26,13 +26,13 @@ namespace NPC.Behaviour
             _entityCanBeAttacked.OnDeath += OnDeath;
         }
 
-        private void OnDestroy()
+        public virtual void OnDestroy()
         {
             _entityCanBeAttacked.AfterAttacked -= AfterAttacked;
             _entityCanBeAttacked.OnDeath -= OnDeath;
         }
 
-        protected virtual void OnDeath()
+        public void OnDeath()
         {
             SceneItemsSystem.Instance.DropRandomItem(drop, transform.position);
             PlayerEntity.CurrentPlayer.AddXp(xp);

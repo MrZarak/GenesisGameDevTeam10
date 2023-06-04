@@ -10,18 +10,13 @@ namespace Player
     public class PlayerSystem : IDisposable
     {
         private readonly ProjectUpdater _projectUpdater;
-        private readonly PlayerEntity _playerEntity;
         public PlayerBrain PlayerBrain { get; }
 
-        private List<IDisposable> _disposables;
 
         public PlayerSystem(UIContext uiContext, PlayerEntity playerEntity, List<IEntityInputSource> inputSources)
         {
-            _disposables = new List<IDisposable>();
-            _playerEntity = playerEntity;
-            PlayerBrain = new PlayerBrain(uiContext, _playerEntity, inputSources);
+            PlayerBrain = new PlayerBrain(uiContext, playerEntity, inputSources);
         }
-
 
         public void Dispose()
         {

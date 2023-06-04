@@ -25,7 +25,7 @@ namespace NPC.Controller
         }
 
         public void Dispose() => ProjectUpdater.Instance.FixedUpdateCalled -= OnFixedUpdate;
-
+        
         private void OnFixedUpdate()
         {
             _playerEntity.MoveHorizontally(GetHorizontalDirection());

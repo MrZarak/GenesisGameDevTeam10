@@ -41,7 +41,6 @@ namespace Core
             _uiContext = new UIContext(playerEntity, _sceneItemsSystem);
             _externalDevicesInput = new ExternalDevicesInputReader(_projectUpdater);
 
-
             InitPlayerSystem();
 
             _disposables.Add(_sceneItemsSystem);
@@ -79,6 +78,8 @@ namespace Core
                 gameUIInputView,
                 _externalDevicesInput,
             });
+            
+            _disposables.Add(_playerSystem);
         }
 
         private void Update()
