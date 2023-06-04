@@ -188,6 +188,9 @@ namespace Player
 
         private void OnDeath()
         {
+            PlayerPrefs.DeleteKey("money");
+            PlayerPrefs.DeleteKey("Hp");
+
             SceneManager.LoadScene("Die_scene");
         }
     }
