@@ -40,7 +40,6 @@ namespace Core
             _sceneItemsSystem = new SceneItemsSystem(playerEntity);
             _uiContext = new UIContext(playerEntity, _sceneItemsSystem);
             _externalDevicesInput = new ExternalDevicesInputReader(_projectUpdater);
-            Debug.Log(_projectUpdater);
 
             InitPlayerSystem();
 

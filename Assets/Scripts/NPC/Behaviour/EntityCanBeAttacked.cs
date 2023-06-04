@@ -7,7 +7,7 @@ namespace NPC.Behaviour
     {
         [field: SerializeField] public float MaxHealth { get; private set; } = 20;
 
-        [field: SerializeField] public float Health { get; private set; } = 10;
+        [field: SerializeField] public float Health { get; set; } = 10;
         [SerializeField] public float Armor;
 
         public event Action OnDeath;

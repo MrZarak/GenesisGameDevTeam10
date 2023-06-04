@@ -26,6 +26,7 @@ namespace Player
         [SerializeField] private LayerMask attackMask;
         [field: SerializeField] public int Money { get; private set; }
         [field: SerializeField] public int Xp { get; private set; }
+        [field: SerializeField] public int XpForNextLevel { get; private set; } = 999;
 
         private Jumper _jumper;
         private EntityCanBeAttacked _entityCanBeAttacked;
@@ -49,6 +50,11 @@ namespace Player
             DirectionalMover = new VelocityMover(Rigidbody, _directionMovementData);
             _jumper = new Jumper(Rigidbody, _jumpData);
             _entityCanBeAttacked = GetComponent<EntityCanBeAttacked>();
+
+            if(PlayerPrefs.HasKey("money")) Money = PlayerPrefs.GetInt("money");
+
+            if(PlayerPrefs.HasKey("Hp") &&  PlayerPrefs.GetFloat("Hp") != 0)
+                _entityCanBeAttacked.Health = PlayerPrefs.GetFloat("Hp");
         }
 
         private void Start()
@@ -163,12 +169,21 @@ namespace Player
         public void AddMoney(int money)
         {
             Money += money;
+            PlayerPrefs.SetInt("money", Money);
         }
 
         public void AddXp(int xp)
         {
             Xp += xp;
-            if (Xp == 1) SceneManager.LoadScene("NextLevel_Scene");
+
+            if (Xp >= XpForNextLevel) 
+            {
+                int scene = SceneManager.GetActiveScene().buildIndex;
+
+                if(scene == 1) SceneManager.LoadScene("NextLevel_Scene");
+                if(scene == 3) SceneManager.LoadScene("Finish_Scene");
+            }
+
         }
 
         private void OnDeath()

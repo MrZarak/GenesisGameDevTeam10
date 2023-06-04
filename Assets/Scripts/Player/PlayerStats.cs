@@ -30,7 +30,7 @@ namespace Player
         public void FixedUpdate()
         {
             moneyText.text = _playerEntity.Money.ToString();
-            xpText.text = _playerEntity.Xp.ToString() + " / " + "1  ";
+            xpText.text = _playerEntity.Xp.ToString() + " / " + _playerEntity.XpForNextLevel;
             if (_prevHealth != _entityCanBeAttacked.Health || _prevMaxHealth != _entityCanBeAttacked.MaxHealth)
             {
                 var parentH = _maskParentTransform.rect.height;
@@ -39,6 +39,8 @@ namespace Player
                 hpMask.rectTransform.sizeDelta = new Vector2(hpMask.rectTransform.sizeDelta.x, height);
                 _prevHealth = _entityCanBeAttacked.Health;
                 _prevMaxHealth = _entityCanBeAttacked.MaxHealth;
+
+                PlayerPrefs.SetFloat("Hp", _prevHealth);
             }
         }
     }
