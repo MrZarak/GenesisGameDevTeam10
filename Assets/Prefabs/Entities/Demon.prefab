@@ -9,7 +9,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1019837129, guid: 779aa01634a012c4596b870d001f3272, type: 3}
       propertyPath: xp
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1019837129, guid: 779aa01634a012c4596b870d001f3272, type: 3}
       propertyPath: speed
@@ -21,16 +21,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1019837129, guid: 779aa01634a012c4596b870d001f3272, type: 3}
       propertyPath: drop.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1019837129, guid: 779aa01634a012c4596b870d001f3272, type: 3}
       propertyPath: drop.Array.data[0].<Item>k__BackingField
       value: 
-      objectReference: {fileID: 11400000, guid: 31b242bfeffb2074095e6e053396b50c, type: 2}
+      objectReference: {fileID: 11400000, guid: f489e27e61f925141bf84e8ae504e639, type: 2}
     - target: {fileID: 1019837129, guid: 779aa01634a012c4596b870d001f3272, type: 3}
       propertyPath: drop.Array.data[1].<Item>k__BackingField
       value: 
-      objectReference: {fileID: 11400000, guid: a130b2898e6d1d04baea788929d2cdeb, type: 2}
+      objectReference: {fileID: 11400000, guid: 31b242bfeffb2074095e6e053396b50c, type: 2}
     - target: {fileID: 1019837129, guid: 779aa01634a012c4596b870d001f3272, type: 3}
       propertyPath: drop.Array.data[2].<Item>k__BackingField
       value: 
