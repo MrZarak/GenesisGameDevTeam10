@@ -21,7 +21,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1019837129, guid: 779aa01634a012c4596b870d001f3272, type: 3}
       propertyPath: drop.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1019837129, guid: 779aa01634a012c4596b870d001f3272, type: 3}
       propertyPath: afterAttackCooldown
@@ -30,7 +30,7 @@ PrefabInstance:
     - target: {fileID: 1019837129, guid: 779aa01634a012c4596b870d001f3272, type: 3}
       propertyPath: drop.Array.data[0].<Item>k__BackingField
       value: 
-      objectReference: {fileID: 11400000, guid: 4e76eaca58401e24fb079c5c8dd8e03c, type: 2}
+      objectReference: {fileID: 11400000, guid: 8122a4237c747184ca592428a729c41a, type: 2}
     - target: {fileID: 1019837129, guid: 779aa01634a012c4596b870d001f3272, type: 3}
       propertyPath: drop.Array.data[1].<Item>k__BackingField
       value: 
@@ -45,7 +45,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 4c34f5fc5af2099488ea9461b45221a6, type: 2}
     - target: {fileID: 1019837129, guid: 779aa01634a012c4596b870d001f3272, type: 3}
       propertyPath: drop.Array.data[0].<MaxAmount>k__BackingField
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1019837129, guid: 779aa01634a012c4596b870d001f3272, type: 3}
       propertyPath: drop.Array.data[0].<MinAmount>k__BackingField

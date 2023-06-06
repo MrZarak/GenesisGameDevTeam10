@@ -17,12 +17,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1019837129, guid: 779aa01634a012c4596b870d001f3272, type: 3}
       propertyPath: drop.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1019837129, guid: 779aa01634a012c4596b870d001f3272, type: 3}
       propertyPath: drop.Array.data[0].<Item>k__BackingField
       value: 
-      objectReference: {fileID: 11400000, guid: 53dc8f145517c6941867cf0c958f6952, type: 2}
+      objectReference: {fileID: 11400000, guid: 4c34f5fc5af2099488ea9461b45221a6, type: 2}
     - target: {fileID: 1019837129, guid: 779aa01634a012c4596b870d001f3272, type: 3}
       propertyPath: drop.Array.data[1].<Item>k__BackingField
       value: 
@@ -33,7 +33,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: e16bb89d9ed06394ead597d1eb830c41, type: 2}
     - target: {fileID: 1019837129, guid: 779aa01634a012c4596b870d001f3272, type: 3}
       propertyPath: drop.Array.data[0].<MaxAmount>k__BackingField
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1019837129, guid: 779aa01634a012c4596b870d001f3272, type: 3}
       propertyPath: drop.Array.data[0].<MinAmount>k__BackingField
