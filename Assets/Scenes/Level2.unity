@@ -1911,7 +1911,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.2855558, y: 0.51, z: -10}
+  m_LocalPosition: {x: -2.8411117, y: 0.51, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3085,12 +3085,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3272343860037118926, guid: 01cdf1bd633706d409e241b553a25682, type: 3}
+      propertyPath: respawnTime
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 3272343860037118926, guid: 01cdf1bd633706d409e241b553a25682, type: 3}
       propertyPath: initialDelay
-      value: 75
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 3272343860037118926, guid: 01cdf1bd633706d409e241b553a25682, type: 3}
       propertyPath: maxSpawnIterations
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3272343860037118926, guid: 01cdf1bd633706d409e241b553a25682, type: 3}
       propertyPath: entities.Array.size
@@ -3614,12 +3618,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3272343860037118926, guid: 01cdf1bd633706d409e241b553a25682, type: 3}
+      propertyPath: respawnTime
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 3272343860037118926, guid: 01cdf1bd633706d409e241b553a25682, type: 3}
       propertyPath: initialDelay
-      value: 50
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 3272343860037118926, guid: 01cdf1bd633706d409e241b553a25682, type: 3}
       propertyPath: maxSpawnIterations
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3272343860037118926, guid: 01cdf1bd633706d409e241b553a25682, type: 3}
       propertyPath: entities.Array.size
@@ -4282,7 +4290,7 @@ MonoBehaviour:
     m_Bits: 256
   <Money>k__BackingField: 0
   <Xp>k__BackingField: 0
-  <XpForNextLevel>k__BackingField: 5
+  <XpForNextLevel>k__BackingField: 100
 --- !u!70 &1225854744
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -5490,12 +5498,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3272343860037118926, guid: 01cdf1bd633706d409e241b553a25682, type: 3}
+      propertyPath: respawnTime
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3272343860037118926, guid: 01cdf1bd633706d409e241b553a25682, type: 3}
       propertyPath: initialDelay
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3272343860037118926, guid: 01cdf1bd633706d409e241b553a25682, type: 3}
       propertyPath: maxSpawnIterations
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3272343860037118926, guid: 01cdf1bd633706d409e241b553a25682, type: 3}
       propertyPath: entities.Array.size
@@ -5979,7 +5991,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1612377547}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.825556, y: 0.51, z: -10}
+  m_LocalPosition: {x: 5.381111, y: 0.51, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5995,12 +6007,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3272343860037118926, guid: 01cdf1bd633706d409e241b553a25682, type: 3}
+      propertyPath: respawnTime
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 3272343860037118926, guid: 01cdf1bd633706d409e241b553a25682, type: 3}
       propertyPath: initialDelay
-      value: 25
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3272343860037118926, guid: 01cdf1bd633706d409e241b553a25682, type: 3}
       propertyPath: maxSpawnIterations
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3272343860037118926, guid: 01cdf1bd633706d409e241b553a25682, type: 3}
       propertyPath: entities.Array.size
@@ -7704,7 +7720,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2129768612}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.2855558, y: 0.51, z: -10}
+  m_LocalPosition: {x: -2.8411117, y: 0.51, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
